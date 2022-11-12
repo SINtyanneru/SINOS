@@ -12,3 +12,8 @@ function Menu_OC(){
 		Menu_Mode = false;
 	}
 }
+
+
+window.addEventListener('keypress', function(e){
+	console.log(e.keyCode);
+}, false);
