@@ -28,7 +28,7 @@ function TILE_CONTEXTMENU(e, INDEX){
 
 	if(e.ctrlKey){
 		//コントロールキーを押している場合
-		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！<BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\">" + "タイルの場所を変更" + "</BUTTON>";		//中に追加
+		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！<HR><BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\" style=\"width: 100%;\">" + "タイルの場所を変更" + "</BUTTON>";		//中に追加
 
 		CONTEXTMENU.style.left = e.clientX + "px";	//位置を調整
 		CONTEXTMENU.style.top = e.clientY + "px";		//位置を調整
@@ -40,7 +40,7 @@ function TILE_CONTEXTMENU(e, INDEX){
 }
 
 function TILE_CH(INDEX){
-	alert("移動先のタイルを選んでほしいのだ！");
+	Dialog("移動先のタイルを選んでほしいのだ！", "タイル", 0)
 
 	const now_selecttile = Clicked_Tile;
 
@@ -67,7 +67,7 @@ function TILE_CH(INDEX){
 
 			Tile_JSON.forEach(element => {
 				if(element.POS == CH_INDEX){
-					alert("えら＾");
+					Dialog("Error", "タイル", 1)
 
 					//処理停止
 					clearInterval(set_int);
@@ -100,5 +100,7 @@ window.addEventListener('click', function(e){
 	if(e.target.className.split(" ")[1] == "TILE_ITEM"){
 		console.log("タイルをクリックした！");
 		Clicked_Tile = e.target.className.split(" ")[0]
+	}else{
+		document.getElementById("TILE_CONTEXTMENU").style.display = "none";
 	}
 });
