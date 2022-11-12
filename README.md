@@ -1,1 +1,3 @@
 # SINOS
+___
+SINOS is [OSModoki](https://www.google.com/search?q=OS%E3%82%82%E3%81%A9%E3%81%8D&oq=OS%E3%82%82%E3%81%A9%E3%81%8D&aqs=chrome..69i57.1205j0j1&sourceid=chrome&ie=UTF-8 "OSModoki Site Link")
