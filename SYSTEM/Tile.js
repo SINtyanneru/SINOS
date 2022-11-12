@@ -12,9 +12,14 @@ function TILE_RELOAD(){
 		document.getElementById("TILE_" + element).innerHTML = "";
 	});
 
+	var count = 0;
+
 	Tile_JSON.forEach(element => {
 		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px;";
+		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;
 		document.getElementById("TILE_" + element.POS).innerHTML = element.NAME;
+
+		count++;
 	});
 }
 
@@ -23,8 +28,7 @@ function TILE_CONTEXTMENU(e, INDEX){
 
 	if(e.ctrlKey){
 		//コントロールキーを押している場合
-
-		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！<BUTTON onclick=\"TILE_CH();\">" + "タイルの場所を変更" + "</BUTTON>";		//中に追加
+		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！<BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\">" + "タイルの場所を変更" + "</BUTTON>";		//中に追加
 
 		CONTEXTMENU.style.left = e.clientX + "px";	//位置を調整
 		CONTEXTMENU.style.top = e.clientY + "px";		//位置を調整
@@ -35,7 +39,7 @@ function TILE_CONTEXTMENU(e, INDEX){
 	}
 }
 
-function TILE_CH(){
+function TILE_CH(INDEX){
 	alert("移動先のタイルを選んでほしいのだ！");
 
 	const now_selecttile = Clicked_Tile;
@@ -56,19 +60,24 @@ function TILE_CH(){
 
 				console.log("[ OK ]Canseled")
 
+				//処理停止
 				clearInterval(set_int);
 				return;
 			}
 
 			Tile_JSON.forEach(element => {
 				if(element.POS == CH_INDEX){
-					checkFlg = window.confirm('そこにはすでにタイルがあるよ、本当に変える？');
+					alert("えら＾");
+
+					//処理停止
+					clearInterval(set_int);
+					return;
 				}
 			});
 
 			if(checkFlg){
 				console.log("[ *** ]Tile Changeding...")
-				Tile_JSON[1].POS = CH_INDEX;
+				Tile_JSON[INDEX].POS = CH_INDEX;
 				TILE_RELOAD();
 
 				console.log("[ OK ]Tile Changeed!")
@@ -78,6 +87,7 @@ function TILE_CH(){
 
 			document.getElementById("TILE_CONTEXTMENU").style.display = "none";
 
+			//処理停止
 			clearInterval(set_int);
 			return;
 		}
