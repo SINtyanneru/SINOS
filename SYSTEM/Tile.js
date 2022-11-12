@@ -6,3 +6,23 @@ window.addEventListener('load', (event) => {
 		document.getElementById("TILE_" + element.POS).innerHTML = element.NAME;
 	});
 });
+
+function TILE_CH(e, INDEX){
+	const CONTEXTMENU = document.getElementById("TILE_CONTEXTMENU");
+
+	if(e.ctrlKey){
+		//コントロールキーを押している場合
+
+		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！";		//中に追加
+
+		CONTEXTMENU.style.left = e.offsetX+"px";	//位置を調整
+		CONTEXTMENU.style.top = e.offsetY+"px";		//位置を調整
+		CONTEXTMENU.style.display = "block";		//なんか、あれだよ、あれ
+	}else{
+		//押してねえぞ！！ファアアック
+		CONTEXTMENU.style.display = "none";		//これもあれだよ、うん
+	}
+}
+
+window.addEventListener('load', function(e){
+});
