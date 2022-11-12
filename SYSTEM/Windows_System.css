@@ -1,4 +1,4 @@
-.panel {
+.WINDOW {
 	position: absolute;      /* OUTER に対して絶対座標 */
 	border: 2px solid black;
 	background: silver;
@@ -9,7 +9,7 @@
 	resize: both;            /* div の大きさを変更可能にする */
 	overflow: hidden;        /* 必要 */
 }
-.panel .title {
+.WINDOW .TITLE {
 	user-select: none;       /* テキスト選択を禁止 */
 	border-bottom: 1px solid black;
 	background: linear-gradient(to right, rgb(0, 255, 13), rgba(0, 247, 255));
@@ -18,7 +18,7 @@
 	padding: 0.3em 0.5em;
 	box-shadow: 0 1px 2px #669;
 }
-.panel .divtext {
+.WINDOW .CONTENTS {
 	padding: 0.4em;
 	line-height: 1.5;
 }

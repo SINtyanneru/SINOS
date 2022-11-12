@@ -7,17 +7,21 @@ window.addEventListener('load', (event) => {
 });
 
 function TILE_RELOAD(){
+	//タイルをリロード
+
+	//タイルを一回抹殺
 	Tile_ID.forEach(element => {
 		document.getElementById("TILE_" + element).style = "";
 		document.getElementById("TILE_" + element).innerHTML = "";
 	});
 
-	var count = 0;
+	var count = 0; //例のアレ、そう、カウント
 
+	//一個一個追加
 	Tile_JSON.forEach(element => {
-		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px;";
-		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;
-		document.getElementById("TILE_" + element.POS).innerHTML = element.NAME;
+		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px;";	//テキスト
+		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;	//JSON上で何個目のタイルか
+		document.getElementById("TILE_" + element.POS).innerHTML = element.NAME;	//名前
 
 		count++;
 	});

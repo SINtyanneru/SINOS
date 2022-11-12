@@ -2,7 +2,7 @@
   MIT License。流用・改造はご自由に。
  */
 
-var ZIndex_max = 0;
+var ZIndex_max = 1;
 
 class MouseDrag {
 
