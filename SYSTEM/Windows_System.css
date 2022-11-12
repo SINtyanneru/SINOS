@@ -22,3 +22,20 @@
 	padding: 0.4em;
 	line-height: 1.5;
 }
+
+.WINDOW > .TITLE > .WINDOW_BUTTON{
+	position: absolute;
+
+	top: 0px;
+	right: 0px;
+
+	background-color: aquamarine;
+
+	width: 100px;
+	height: 34px;
+}
+
+.WINDOW > .TITLE > .WINDOW_BUTTON > button{
+	height: 100%;
+	width: 50%;
+}
