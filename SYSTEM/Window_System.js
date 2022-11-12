@@ -1,80 +1,76 @@
-(function(){
+/* @author gorogoronyan 2016-2022/05
+  MIT License。流用・改造はご自由に。
+ */
 
-    //要素の取得
-    var elements = document.getElementsByClassName("drag-and-drop");
+var ZIndex_max = 0;
 
-    //要素内のクリックされた位置を取得するグローバル（のような）変数
-    var x;
-    var y;
+class MouseDrag {
 
-    //マウスが要素内で押されたとき、又はタッチされたとき発火
-    for(var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener("mousedown", mdown, false);
-        elements[i].addEventListener("touchstart", mdown, false);
-    }
+	targetElement = null;  //ドラッグしたい要素
+	dragElement = null;    //マウスドラッグに反応する要素
+	isMouseDown = false;
+	x = 0;                 //要素の左上とマウスの位置の差
+	y = 0;
 
-    //マウスが押された際の関数
-    function mdown(e) {
+	toString(){
+		return "[object MouseDrag]";
+	}
 
-        //クラス名に .drag を追加
-        this.classList.add("drag");
+	/* 初期化
+	@param {HTMLElement} targetElement ドラッグしたい要素
+	@param {HTMLElement} dragElement   マウスドラッグに反応する要素
 
-        //タッチデイベントとマウスのイベントの差異を吸収
-        if(e.type === "mousedown") {
-            var event = e;
-        } else {
-            var event = e.changedTouches[0];
-        }
+	・ノート
+	  画像 (img) の場合は、targetElement と dragElement は同じ。
+	  div などの枠だと、ドラッグしたい要素本体と、ドラッグに反応する
+	  タイトルバーなどの要素が異なる場合がある。
+	 */
+	init(targetElement, dragElement){
+		//console.log("#init: this="+this);
+		this.targetElement = targetElement;
+		this.dragElement = dragElement;
 
-        //要素内の相対座標を取得
-        x = event.pageX - this.offsetLeft;
-        y = event.pageY - this.offsetTop;
+		//イベントリスナーをセット
+		dragElement.addEventListener("mousedown", event => this.onMouseDown(event));
+		dragElement.addEventListener("mousemove", event => this.onMouseMove(event));
+		dragElement.addEventListener("mouseup", event => this.onMouseUp(event));
+		dragElement.addEventListener("mouseout", event => this.onMouseUp(event));
+	}
 
-        //ムーブイベントにコールバック
-        document.body.addEventListener("mousemove", mmove, false);
-        document.body.addEventListener("touchmove", mmove, false);
-    }
+	onMouseDown(ev){
+		//デフォルトの動作を禁止
+		//これがないと、たとえば img 要素ではドラッグ＆ドロップ
+		//する動作になる。
+		ev.preventDefault();
 
-    //マウスカーソルが動いたときに発火
-    function mmove(e) {
+		//this が MouseDrag のオブジェトになっていること
+		//console.log("#onMouseDown this:"+this);
 
-        //ドラッグしている要素を取得
-        var drag = document.getElementsByClassName("drag")[0];
+		const el = this.targetElement;
+		this.isMouseDown = true;
+		this.x = ev.pageX - el.offsetLeft;
+		this.y = ev.pageY - el.offsetTop;
 
-        //同様にマウスとタッチの差異を吸収
-        if(e.type === "mousemove") {
-            var event = e;
-        } else {
-            var event = e.changedTouches[0];
-        }
+		el.style.zIndex = ZIndex_max++;
+	}
 
-        //フリックしたときに画面を動かさないようにデフォルト動作を抑制
-        e.preventDefault();
+	onMouseMove(ev){
+		ev.preventDefault();
 
-        //マウスが動いた場所に要素を動かす
-        drag.style.top = event.pageY - y + "px";
-        drag.style.left = event.pageX - x + "px";
+		//マウスボタンを押している場合は el の座標を更新
+		if (this.isMouseDown){
+			const el = this.targetElement;
+			el.style.left = (ev.pageX - this.x) +"px";
+			el.style.top  = (ev.pageY - this.y) +"px";
+		}
+	}
 
-        //マウスボタンが離されたとき、またはカーソルが外れたとき発火
-        drag.addEventListener("mouseup", mup, false);
-        document.body.addEventListener("mouseleave", mup, false);
-        drag.addEventListener("touchend", mup, false);
-        document.body.addEventListener("touchleave", mup, false);
+	onMouseUp(ev){
+		this.isMouseDown = false;
+		ev.preventDefault();
+	}
 
-    }
-
-    //マウスボタンが上がったら発火
-    function mup(e) {
-        var drag = document.getElementsByClassName("drag")[0];
-
-        //ムーブベントハンドラの消去
-        document.body.removeEventListener("mousemove", mmove, false);
-        drag.removeEventListener("mouseup", mup, false);
-        document.body.removeEventListener("touchmove", mmove, false);
-        drag.removeEventListener("touchend", mup, false);
-
-        //クラス名 .drag も消す
-        drag.classList.remove("drag");
-    }
-
-})()
+	onMouseOut(ev){
+		//必要な処理があれば、サブクラスで入れる。
+	}
+}

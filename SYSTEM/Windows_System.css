@@ -1,9 +1,24 @@
-.drag-and-drop {
-    cursor: move;
-    position: absolute;
-    z-index: 1000;
-}
+.panel {
+	position: absolute;      /* OUTER に対して絶対座標 */
+	border: 2px solid black;
+	background: silver;
+	width: 250px;
+	height: 150px;
+	box-shadow: 2px 2px 3px #ccc;
 
-.drag {
-    z-index: 1001;
+	resize: both;            /* div の大きさを変更可能にする */
+	overflow: hidden;        /* 必要 */
+}
+.panel .title {
+	user-select: none;       /* テキスト選択を禁止 */
+	border-bottom: 1px solid black;
+	background: linear-gradient(to right, rgb(0, 255, 13), rgb(0, 247, 255));
+	color: black;
+	font-weight: bold;
+	padding: 0.3em 0.5em;
+	box-shadow: 0 1px 2px #669;
+}
+.panel .divtext {
+	padding: 0.4em;
+	line-height: 1.5;
 }

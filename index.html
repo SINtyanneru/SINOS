@@ -1,11 +1,42 @@
 <HTML>
 	<HEAD>
 		<TITLE>SINOS</TITLE>
+
+		<!--システムデータロード-->
+		<LINK REL="stylesheet" href="./SYSTEM/style.css">
+		<LINK REL="stylesheet" href="./SYSTEM/Windows_System.css">
+
+		<SCRIPT src="./SYSTEM/IPL.js"></SCRIPT>
+		<SCRIPT src="./SYSTEM/Main.js"></SCRIPT>
+		<SCRIPT src="./SYSTEM/Window_System.js"></SCRIPT>
 	</HEAD>
 	<BODY>
-		<!--ここからOSのシェル(?)-->
-		<div class="drag-and-drop" id="red-box"></div>
-<div class="drag-and-drop" id="blue-box"></div>
-<div class="drag-and-drop" id="yellow-box"></div>
+		<DIV class="MENUBAR" id="MENUBAR">
+			<BUTTON onclick="Menu_OC()">Start</BUTTON>
+		</DIV>
+		<DIV class="DESKTOP" id="DESKTOP">
+
+			<DIV class="WINDOW_AREA" id="WINDOW_AREA">
+
+				<!--テストウィンドウ-->
+				<DIV id="DIV1" class="panel" style="top:50px; left:50px;">
+					<DIV class="title">テストアプリ1</DIV>
+					<DIV class="divtext">
+						ウィンドウテスト1
+					</DIV>
+				</DIV>
+				<DIV id="DIV2" class="panel" style="top:100px; left:100px;">
+					<DIV class="title">テストアプリ2</DIV>
+					<DIV class="divtext">
+						ウィンドウテスト2
+					</DIV>
+				</DIV>
+
+			</DIV>
+
+			<DIV class="MENU" id="MENU">
+
+			</DIV>
+		</DIV>
 	</BODY>
 </HTML>
