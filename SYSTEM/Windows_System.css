@@ -12,7 +12,7 @@
 .panel .title {
 	user-select: none;       /* テキスト選択を禁止 */
 	border-bottom: 1px solid black;
-	background: linear-gradient(to right, rgb(0, 255, 13), rgb(0, 247, 255));
+	background: linear-gradient(to right, rgb(0, 255, 13), rgba(0, 247, 255));
 	color: black;
 	font-weight: bold;
 	padding: 0.3em 0.5em;
