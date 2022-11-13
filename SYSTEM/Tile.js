@@ -1,4 +1,4 @@
-var Tile_JSON = [{"ID":"TEST","NAME":"テストタイル","POS":"0"},{"ID":"TEST","NAME":"テストタイル","POS":"5"}];
+var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"}];
 const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);
 var Clicked_Tile;
 
@@ -21,7 +21,7 @@ function TILE_RELOAD(){
 	Tile_JSON.forEach(element => {
 		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px;";	//テキスト
 		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;	//JSON上で何個目のタイルか
-		document.getElementById("TILE_" + element.POS).innerHTML = element.NAME;	//名前
+		document.getElementById("TILE_" + element.POS).innerHTML = "<R onclick=\"Menu_Close(); " + element.VOID + "\" style=\"display:block; cursor: pointer; width: 100%; height: 100%;\"><R style=\"position: relative; top: 70px;\">" + element.NAME + "</R></R>";	//名前
 
 		count++;
 	});
