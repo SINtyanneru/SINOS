@@ -4,6 +4,9 @@
 	background: silver;
 	width: 250px;
 	height: 150px;
+	min-width: 250px;
+	min-height: 150px;
+
 	box-shadow: 2px 2px 3px #ccc;
 
 	resize: both;            /* div の大きさを変更可能にする */

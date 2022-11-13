@@ -3,7 +3,7 @@
  */
 
 var ZIndex_max = 1;
-var Window_List = ["DIV1", "DIV2"];
+var Window_List = [];
 
 class MouseDrag {
 
