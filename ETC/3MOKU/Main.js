@@ -2,15 +2,17 @@
  * 三目並べ(アプリのテスト)
  */
 
-var Window_ID = 00;
-
 //ウィンドウを作成
 function sanmoki_Start(){
-    if(Window_ID != 00){
-        Dialog("一つ以上起動することはできません！","三目並べ",1);
-        return;
-    }
-    
     const Window_element = Window_Create("三目並べ", 1, 0, 0, 500, 500);
-    Window_ID = Window_element.ID;
+    const WIndowID = Window_element.ID;
+
+    Window_Contents("<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>" + 
+    "<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
+    "<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON>",0,WIndowID);
+}
+
+function sanmoku_Clicked(e){
+    console.log(e);
+    e.target.innerHTML = "丸";
 }
