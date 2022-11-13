@@ -59,5 +59,5 @@ setInterval(function(){
 	var MIN = DATE_TIME.getMinutes();
 	var SEC = DATE_TIME.getSeconds();
 
-	document.getElementById("CLOCK").innerHTML = YEAR + "年" + MONTH + "月" + DATE + "日<BR>" + HOUR + "時" + MIN + "分" + SEC + "秒";
+	document.getElementById("MENUBAR_CLOCK").innerHTML = YEAR + "年" + MONTH + "月" + DATE + "日<BR>" + HOUR + "時" + MIN + "分" + SEC + "秒";
 }, 100);

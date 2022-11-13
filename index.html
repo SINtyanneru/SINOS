@@ -7,6 +7,7 @@
 		<LINK REL="stylesheet" href="./SYSTEM/Windows_System.css">
 		<LINK REL="stylesheet" href="./SYSTEM/TILE.css">
 		<LINK REL="stylesheet" href="./SYSTEM/MENU.css">
+		<LINK REL="stylesheet" href="./SYSTEM/DashBord.css">
 
 		<SCRIPT src="./SYSTEM/IPL.js"></SCRIPT>
 		<SCRIPT src="./SYSTEM/Main.js"></SCRIPT>
@@ -25,7 +26,7 @@
 	<BODY>
 		<DIV class="MENUBAR" id="MENUBAR">
 			<BUTTON onclick="Menu_OC()" style="width: 80px; height: 80px;">Start</BUTTON>	<!--スタートボタン-->
-			<DIV class="CLOCK" id="CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
+			<DIV class="MENUBAR_CLOCK" id="MENUBAR_CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
 		</DIV>
 		<DIV class="DESKTOP" id="DESKTOP">
 
@@ -59,7 +60,9 @@
 
 			<!--ダッシュボード-->
 			<DIV class="DASHBORD" id="DASHBORD">
-
+				<DIV id="DASHBORD_CLOCK_WRAPPER" style="width: 300; height: 300;">
+					<CANVAS id="DASHBORD_CLOCK"></CANVAS>
+				</DIV>
 			</DIV>
 		</DIV>
 	</BODY>
