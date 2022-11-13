@@ -24,14 +24,14 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 		switch(MODE){
 			case 0:
 				Window_Template =
-				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 60) + "px; left:" + Number(POS_X + 60) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
+				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
 					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON>_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\">X</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
 			case 1:
 				Window_Template =
-				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + POS_Y + "px; left:" + POS_X + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
+				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
 					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON>_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" disabled>X</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";

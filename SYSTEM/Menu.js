@@ -5,9 +5,21 @@ function Menu_OC(){
 	const Menu = document.getElementById("MENU");
 
 	if(!Menu_Mode){
-		Menu.classList.add("open")
+		Menu.classList.add("open");
+
+		DashBord_Close();
+
 		Menu_Mode = true;
 	}else{
+		Menu.classList.remove("open");
+		Menu_Mode = false;
+	}
+}
+
+function Menu_Close(){
+	if(Menu_Mode){
+		const Menu = document.getElementById("MENU");
+
 		Menu.classList.remove("open")
 		Menu_Mode = false;
 	}

@@ -13,6 +13,7 @@
 		<SCRIPT src="./SYSTEM/Window_System.js"></SCRIPT>
 		<SCRIPT src="./SYSTEM/TILE.js"></SCRIPT>
 		<SCRIPT src="./SYSTEM/Menu.js"></SCRIPT>
+		<SCRIPT src="./SYSTEM/DashBord.js"></SCRIPT>
 
 		<!--OS API-->
 		<SCRIPT src="./SYSTEM/API/Window.js"></SCRIPT>
@@ -23,7 +24,8 @@
 	</HEAD>
 	<BODY>
 		<DIV class="MENUBAR" id="MENUBAR">
-			<BUTTON onclick="Menu_OC()" style="width: 100%; height: 50px;">Start</BUTTON>
+			<BUTTON onclick="Menu_OC()" style="width: 80px; height: 80px;">Start</BUTTON>	<!--スタートボタン-->
+			<DIV class="CLOCK" id="CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
 		</DIV>
 		<DIV class="DESKTOP" id="DESKTOP">
 
@@ -31,6 +33,7 @@
 				<!--ウィンドウエリア-->
 			</DIV>
 
+			<!--メニュー-->
 			<DIV class="MENU" id="MENU">
 				<DIV class="APPLIST" id="APPLIST">
 
@@ -52,6 +55,11 @@
 
 					<DIV class="TILE_CONTEXTMENU" id="TILE_CONTEXTMENU" style="display: none;"></DIV>
 				</DIV>
+			</DIV>
+
+			<!--ダッシュボード-->
+			<DIV class="DASHBORD" id="DASHBORD">
+
 			</DIV>
 		</DIV>
 	</BODY>

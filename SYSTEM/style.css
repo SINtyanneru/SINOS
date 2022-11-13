@@ -12,12 +12,25 @@ body{
 	left: 0px;
 
 	height: 100%;
-	width: 60px;
+	width: 80px;
 
 	background-color: rgba(0, 255, 170, 0.555);
 	backdrop-filter: blur(5px);
 
 	z-index: 1001;
+}
+
+.CLOCK{
+	position: absolute;
+	bottom: 0px;
+
+	font-size: 10px;
+
+	width: 80px;
+
+	text-align: center;
+
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .DESKTOP{
@@ -52,8 +65,27 @@ body{
 	transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.DASHBORD{
+	position: absolute;
+	bottom: 0px;
+	left: calc(-50vw - 100px);
+
+	border: solid;
+
+	background-color: rgba(0, 255, 170, 0.555);
+	backdrop-filter: blur(10px);
+
+	width: 600;
+	height: 40%;
+
+	/*ぜったいに、ウィンドウは最前面には出れないね！！！*/
+	z-index: 1000;
+
+	transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .open{
-	transform:translateX(calc(50vw + 161px));
+	transform:translateX(calc(50vw + 180px));
 }
 
 .WINDOW_AREA {
