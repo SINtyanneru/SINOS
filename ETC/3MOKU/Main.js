@@ -13,6 +13,7 @@ function sanmoki_Start(){
 }
 
 function sanmoku_Clicked(e){
-    console.log(e);
     e.target.innerHTML = "丸";
+
+    document.getElementById("sanmoku_" + Number(++e.target.className.split("_")[1])).innerHTML = "罰"
 }
