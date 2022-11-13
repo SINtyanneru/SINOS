@@ -19,9 +19,9 @@ function TILE_RELOAD(){
 
 	//一個一個追加
 	Tile_JSON.forEach(element => {
-		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px;";	//テキスト
+		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px; cursor: pointer;";	//テキスト
 		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;	//JSON上で何個目のタイルか
-		document.getElementById("TILE_" + element.POS).innerHTML = "<R onclick=\"Menu_Close(); " + element.VOID + "\" style=\"display:block; cursor: pointer; width: 100%; height: 100%;\"><R style=\"position: relative; top: 70px;\">" + element.NAME + "</R></R>";	//名前
+		document.getElementById("TILE_" + element.POS).innerHTML = "<R id=\"TILE_ITEM\" onclick=\"if(!event.ctrlKey){Menu_Close(); " + element.VOID + "}\" style=\"display:block; position: relative; top: 70px;\">" + element.NAME + "</R>";	//名前
 
 		count++;
 	});
@@ -100,10 +100,21 @@ function TILE_CH(INDEX){
 }
 
 window.addEventListener('click', function(e){
-	console.log("くりっく" + e.target.id);
+	console.log("くりっく" + e.target.className);
 	if(e.target.className.split(" ")[1] == "TILE_ITEM"){
 		console.log("タイルをクリックした！");
-		Clicked_Tile = e.target.className.split(" ")[0]
+
+		Clicked_Tile = e.target.className.split(" ")[0];	//Clicked_Tileに、タイルのIDをぶちこーん
+
+		if(!e.ctrlKey){
+			try{
+				var click_event = new Event('click');//クリックイベントを作成
+				var target = document.getElementById(Clicked_Tile).querySelector("#TILE_ITEM"); //タイルの中のアイテムを取得
+				target.dispatchEvent(click_event);	//そのアイテムのクリックイベントをチャッカマン
+			}catch(ex){
+				//タイルの中にアイテムがない場合
+			}
+		}
 	}else{
 		document.getElementById("TILE_CONTEXTMENU").style.display = "none";
 	}
