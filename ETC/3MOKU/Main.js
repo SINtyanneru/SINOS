@@ -8,12 +8,13 @@ function sanmoki_Start(){
     const WIndowID = Window_element.ID;
 
     Window_Contents("<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>" + 
-    "<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
-    "<BUTTON class='sanmoku_0' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2' onclick='sanmoku_Clicked(event)'>無</BUTTON>",0,WIndowID);
+    "<BUTTON class='sanmoku_4' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_5' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_6' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
+    "<BUTTON class='sanmoku_7' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_8' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_9' onclick='sanmoku_Clicked(event)'>無</BUTTON>",0,WIndowID);
 }
 
 function sanmoku_Clicked(e){
     e.target.innerHTML = "丸";
 
-    document.getElementById("sanmoku_" + Number(++e.target.className.split("_")[1])).innerHTML = "罰"
+    console.log(document.getElementsByClassName("sanmoku_" + ++e.target.className.split("_")[1]))
+    document.getElementsByClassName("sanmoku_" + ++e.target.className.split("_")[1])[0].innerHTML = "罰"
 }
