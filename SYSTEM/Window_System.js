@@ -5,35 +5,6 @@
 var ZIndex_max = 1;
 var Window_List = ["DIV1", "DIV2"];
 
-function Window_Close(element){
-	document.getElementById(element).remove();
-	console.log("[ OK ]Close Window :" + element);
-}
-
-function Window_Create(){
-	var ID = Math.floor( Math.random() * 100 );
-
-	const Window_Template =
-	"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:50px; left:50px;\">"+
-		"<DIV class=\"TITLE\">テストアプリ1<R class=\"WINDOW_BUTTON\"><BUTTON>_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\">X</BUTTON></R></DIV>"+
-		"<DIV class=\"CONTENTS\"></DIV>"+
-	"</DIV>";
-
-	const Window_element = document.getElementById("WINDOW_AREA").innerHTML += Window_Template;
-
-	Window_List.push(ID);
-
-	Window_List.forEach(element =>{
-		//ドラッグしたい要素
-		var div = document.getElementById(element);
-		//マウスドラッグに反応する要素
-		var title = div.querySelector(".TITLE");
-		//ドラッグのオブジェクトを作る。
-		var drag = new MouseDrag();
-		drag.init(div, title);
-	});
-}
-
 class MouseDrag {
 
 	targetElement = null;  //ドラッグしたい要素
