@@ -7,21 +7,27 @@ function sanmoki_Start(){
     const Window_element = Window_Create("三目並べ", 1, 0, 0, 500, 500);
     const WIndowID = Window_element.ID;
 
-    Window_Contents("<DIV id='sanmoku_" + WIndowID + "'>丸</DIV>"+
-    "<BUTTON class='sanmoku_0_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>" + 
-    "<BUTTON class='sanmoku_3_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_4_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_5_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
-    "<BUTTON class='sanmoku_6_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_7_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_8_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON>",0,WIndowID);
+    samoku_reset(WIndowID);
 }
 
 function sanmoku_Clicked(e){
 
-    if(document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML == "丸"){
+    if(document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML == "丸の番"){
         e.target.innerHTML = "丸";
-        document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML = "罰";
+        document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML = "罰の番";
     }else{
         e.target.innerHTML = "罰";
-        document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML = "丸";
+        document.getElementById("sanmoku_" + e.target.className.split("_")[2]).innerHTML = "丸の番";
     }
 
     //console.log(document.getElementsByClassName("sanmoku_" + ++e.target.className.split("_")[1]))
+}
+
+function samoku_reset(WIndowID){
+    console.log(WIndowID);
+    Window_Contents("<DIV id='sanmoku_" + WIndowID + "'>丸の番</DIV>"+
+    "<BUTTON class='sanmoku_0_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_1_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_2_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>" + 
+    "<BUTTON class='sanmoku_3_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_4_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_5_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
+    "<BUTTON class='sanmoku_6_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_7_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BUTTON class='sanmoku_8_" + WIndowID + "' onclick='sanmoku_Clicked(event)'>無</BUTTON><BR>"+
+    "<BUTTON id='sanmoku_reset_" + WIndowID + "' onclick='samoku_reset(event.target.id.split(\"_\")[2])'>リセット</BUTTON>",0,WIndowID);
 }
