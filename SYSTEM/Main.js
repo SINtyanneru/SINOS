@@ -16,3 +16,7 @@ window.addEventListener('load', function(e){
 window.addEventListener('keypress', function(e){
 	console.log(e.keyCode);
 }, false);
+
+window.addEventListener('click', function(e){
+	console.log(e.target)
+}, false);

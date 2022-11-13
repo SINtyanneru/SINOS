@@ -1,3 +1,30 @@
 .DASHBORD{
 	user-select: none;       /* テキスト選択を禁止 */
 }
+
+.DASHBORD_NOTIFY{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+
+	width: 300px;
+	height: 100%;
+
+	/*ボーダー表示*/
+	border: solid;
+
+	/*ボーダーの見栄えをよく*/
+	border-top: none;
+	border-bottom: none;
+	border-right: none;
+}
+
+.NOTIFY_ITEM{
+	/*ボーダー表示*/
+	border: solid;
+
+	/*ボーダーの見栄えをよく*/
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}

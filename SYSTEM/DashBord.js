@@ -43,12 +43,14 @@ let $id = function(id){ return document.getElementById(id); };    // DOM取得�
  */
 const BACKGROUND_COLOR = "transparent";        // 背景色
 const WAKU_COLOR = "black";        // 時計枠の色
-const CLOCK_BG_COLOR = "white";            // 時計枠内側の色
+const CLOCK_BG_COLOR = "transparent";            // 時計枠内側の色
 const CLOCK_CENTER_COLOR = "deeppink";    // 時計針の中心のピンの色
 const MOJI_BAN_COLOR = "black";            // 文字盤の12本の線の色
 const SUJI_COLOR = "gray"                // 数字の色
-const JI_SHIN_COLOR = "black";            // 時針の色
-const FUN_SHIN_COLOR = "black";            // 分針の色
+const DIGITAL_NUM_COLOR = "rgb(0, 255, 0)";		//デジタル時計のいろ
+const DIGITAL_BG_COLOR = "rgba(255, 255, 255, 0.5)";		//デジタル時計のいろ
+const JI_SHIN_COLOR = "slategrey";            // 時針の色
+const FUN_SHIN_COLOR = "slategrey";            // 分針の色
 const BYOU_SHIN_COLOR = "deeppink";        // 秒針の色
  
 /*
@@ -78,6 +80,9 @@ window.addEventListener("resize", function(){
  * アナログ時計を描画する
  */
 function clock(){
+	//CANVASをクリア
+	g.clearRect(0, 0, 500, 500);
+
 	g.save();        // デフォルト設定保存
 
 	// 背景色を描画
@@ -92,42 +97,44 @@ function clock(){
 	g.arc(0, 0, 200, 0, Math.PI*2, true);
 	g.fill();
 
-
-
+	/*
+	//もう使わない
 	// 時計枠の描画
 	g.beginPath();
 	g.lineWidth = 25;
 	g.strokeStyle = WAKU_COLOR;
 	g.arc(0, 0, 200, 0, Math.PI*2, true);
 	g.stroke();
+	*/
 
-		//===============================[ 時計にデジタル文字を表示 ]
-		var DATE_TIME = new Date();		//時刻のあれを定義
+	//===============================[ 時計にデジタル文字を表示 ]
+	var DATE_TIME = new Date();		//時刻のあれを定義
 
-		//時刻を全て変数にバボーン
-		var YEAR = DATE_TIME.getFullYear();
-		var MONTH = DATE_TIME.getMonth()+1;
-		var DATE = DATE_TIME.getDate();
-		var HOUR = DATE_TIME.getHours();
-		var MIN = DATE_TIME.getMinutes();
-		var SEC = DATE_TIME.getSeconds();
+	//時刻を全て変数にバボーン
+	var YEAR = DATE_TIME.getFullYear();
+	var MONTH = DATE_TIME.getMonth()+1;
+	var DATE = DATE_TIME.getDate();
+	var HOUR = DATE_TIME.getHours();
+	var MIN = DATE_TIME.getMinutes();
+	var SEC = DATE_TIME.getSeconds();
 
-		//デジタル時計として表示する時刻を変数にバボーン
-		var DATE_TEXT = YEAR + "年" + MONTH + "月" + DATE + "日";
-		var TIME_TEXT = HOUR + "時" + MIN + "分" + SEC + "秒";
+	//デジタル時計として表示する時刻を変数にバボーン
+	var DATE_TEXT = YEAR + "年" + MONTH + "月" + DATE + "日";
+	var TIME_TEXT = HOUR + "時" + MIN + "分" + SEC + "秒";
 
-		//ここから表示処理
-		g.fillStyle = SUJI_COLOR;
-		g.font = "32px serif";    // ゴシック体
-		g.textBaseline = "middle";
-		g.lineWidth = 5;
-		g.strokeStyle = WAKU_COLOR;
-		g.strokeRect( -120, 20, 240, 100 )
-		var DATE_WIDTH = g.measureText(DATE_TEXT);		//文字の長さ
-		var TIME_WIDTH = g.measureText(TIME_TEXT);		//文字の長さ
-		g.fillText(DATE_TEXT, 0 - DATE_WIDTH.width / 2, 50);	//0 - 文字の長さ / 2の位置に表示
-		g.fillText(TIME_TEXT, 0 - TIME_WIDTH.width / 2, 100);	//0 - 文字の長さ / 2の位置に表示
-		//==========================================================
+	//ここから表示処理
+	g.fillStyle = SUJI_COLOR;
+	g.font = "32px serif";    // ゴシック体
+	g.textBaseline = "middle";
+	g.lineWidth = 5;
+	g.fillStyle = DIGITAL_BG_COLOR;		//デジタル文字の背景色
+	g.fillRect( -120, 0, 240, 90 )	//四角を描画
+	g.fillStyle = DIGITAL_NUM_COLOR;	//デジタル文字の色
+	var DATE_WIDTH = g.measureText(DATE_TEXT);		//文字の長さ
+	var TIME_WIDTH = g.measureText(TIME_TEXT);		//文字の長さ
+	g.fillText(DATE_TEXT, 0 - DATE_WIDTH.width / 2, 30);	//0 - 文字の長さ / 2の位置に表示
+	g.fillText(TIME_TEXT, 0 - TIME_WIDTH.width / 2, 70);	//0 - 文字の長さ / 2の位置に表示
+	//==========================================================
 
 	g.rotate(-Math.PI/2);    // 左に90度回転（12時方向を0度とするため）
 	g.lineCap = "round";    // 時針、分針、秒針の角をを丸くするため設定
@@ -144,11 +151,25 @@ function clock(){
 	// 文字盤の時間を表す12本の線を描画
 	g.save();
 	g.strokeStyle = MOJI_BAN_COLOR;
-	g.lineWidth = 4;
+	g.lineWidth = 6;
  
 	g.beginPath();
 	for(let i=0; i<12; i++){
 		g.rotate(Math.PI/6);    // 30度ずつ回転
+		g.moveTo(170, 0);
+		g.lineTo(190, 0);
+	}
+	g.stroke();
+	g.restore();
+
+	// 文字盤の秒数を表す64本の線を描画
+	g.save();
+	g.strokeStyle = MOJI_BAN_COLOR;
+	g.lineWidth = 4;
+
+	g.beginPath();
+	for(let i=0; i<64; i++){
+		g.rotate(Math.PI/30);    // 30度ずつ回転
 		g.moveTo(170, 0);
 		g.lineTo(180, 0);
 	}
@@ -172,8 +193,8 @@ function clock(){
 		let radian = angle * Math.PI / 180;    // ラジアンに変換
 		let x = r * Math.cos(radian);        // x座標
 		let y = r * Math.sin(radian);        // y座標
- 
-		if(i % 3 == 0) g.fillText(i, x-offset[i-1], y);    // 3, 6, 9, 12のみ描画
+
+		if(i % 1 == 0) g.fillText(i, x-offset[i-1], y);    // 3, 6, 9, 12のみ描画
 		angle += 30;
 		i++;
 	}
@@ -207,7 +228,7 @@ function clock(){
 	g.lineWidth = 4;
 	g.beginPath();
 	g.moveTo(-30, 0);
-	g.lineTo(105, 0);
+	g.lineTo(180, 0);
 	g.stroke();
  
 	// 時計の中心を描画
@@ -233,7 +254,7 @@ window.addEventListener("load", function(){
  
 	// キャンバスをウインドウサイズにする
 	getSize();
-	 
+
 	// アナログ時計を起動
 	clock();
 });
