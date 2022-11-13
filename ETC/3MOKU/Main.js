@@ -4,7 +4,7 @@
 
 //ウィンドウを作成
 function sanmoki_Start(){
-    const Window_element = Window_Create("三目並べ", 1, 0, 0, 500, 500);
+    const Window_element = Window_Create("三目並べ", 0, 0, 0, 500, 500);
     const WIndowID = Window_element.ID;
 
     samoku_reset(WIndowID);
