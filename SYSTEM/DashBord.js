@@ -25,29 +25,33 @@ function DashBord_Close(){
 }
 
 function DashBord_NEWS(){
+	//ニュース欄を初期化
+	document.getElementById("DASHBORD_CONTENTS").innerHTML = "NHK NEWS一覧<HR>";
+
 	let viewXML = (xmlDocument) => {
 		//取得した文字列をコンソール出力
-		console.log(xmlDocument);
-	
+		//console.log(xmlDocument);
+
 		//XML形式に変換
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(xmlDocument, "text/xml");
 		let rss = doc.documentElement.getElementsByTagName("item");
-	
+
 		//HTMLタグの作成
 		for(let i = 0;i < rss.length;i++){
 			//RSSから取得したタイトルとリンク情報を格納
 			let rssTitle = rss[i].getElementsByTagName("title")[0].textContent;
 			let rssLink   = rss[i].getElementsByTagName("link")[0].textContent;
-	
+
 			//テンプレート文字列を使ってアンカータグを作成
-			const tagString = `<a href="${rssLink}">${rssTitle}</a><br/>`;
-	
+			const tagString = `<DIV class="NEWS_ITEM"><a href="${rssLink}" target="_blank">${rssTitle}</a></DIV>`;
+
 			//body以下にアンカータグを挿入
 			console.log(tagString);
+			document.getElementById("DASHBORD_CONTENTS").innerHTML += tagString;
 		}
 	};
-	const URL = 'https://ascii.jp/mac/rss.xml';
+	const URL = 'https://www.nhk.or.jp/rss/news/cat0.xml';
 	fetch(URL)
 	.then( response => response.text())
 	.then( xmlData => viewXML(xmlData));
