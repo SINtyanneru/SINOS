@@ -24,6 +24,35 @@ function DashBord_Close(){
 	}
 }
 
+function DashBord_NEWS(){
+	let viewXML = (xmlDocument) => {
+		//取得した文字列をコンソール出力
+		console.log(xmlDocument);
+	
+		//XML形式に変換
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(xmlDocument, "text/xml");
+		let rss = doc.documentElement.getElementsByTagName("item");
+	
+		//HTMLタグの作成
+		for(let i = 0;i < rss.length;i++){
+			//RSSから取得したタイトルとリンク情報を格納
+			let rssTitle = rss[i].getElementsByTagName("title")[0].textContent;
+			let rssLink   = rss[i].getElementsByTagName("link")[0].textContent;
+	
+			//テンプレート文字列を使ってアンカータグを作成
+			const tagString = `<a href="${rssLink}">${rssTitle}</a><br/>`;
+	
+			//body以下にアンカータグを挿入
+			console.log(tagString);
+		}
+	};
+	const URL = 'https://ascii.jp/mac/rss.xml';
+	fetch(URL)
+	.then( response => response.text())
+	.then( xmlData => viewXML(xmlData));
+}
+
 /* ---------------------------------------------------------------------
 	アナログ時計 参考：https://dianxnao.com/javascript%EF%BC%9A%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%90%E3%82%B9%E3%81%A7%E6%99%AE%E9%80%9A%E3%81%AE%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E6%99%82%E8%A8%88%E3%82%92%E4%BD%9C%E3%82%8B/
  --------------------------------------------------------------------- */
