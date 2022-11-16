@@ -13,6 +13,7 @@ function FileDataGet(Path){
 
 	ajax.open("POST", "http://127.0.0.1/GetFileData/" + Path);
 	ajax.withCredentials = true;
+	ajax.responseType = 'blob';
 	ajax.send();
 
 	return ajax;
