@@ -1,5 +1,5 @@
 var Menu_Mode = false;
-var Menu_AppList = [{"ID":"3MOKU","NAME":"三目並べ","VOID":"sanmoki_Start();"},{"ID":"ControlPanel","NAME":"設定","VOID":"controlPanel_Start();"},{"ID":"Tours","NAME":"SINOSツアー","VOID":"sinos_tours_Start();"}];
+var Menu_AppList = [{"ID":"3MOKU","NAME":"三目並べ","VOID":"sanmoki_Start();"},{"ID":"ControlPanel","NAME":"設定","VOID":"controlPanel_Start();"},{"ID":"FILEMAN","NAME":"ファイルマネージャー","VOID":"FILEMANAGER_start();"},{"ID":"Tours","NAME":"SINOSツアー","VOID":"sinos_tours_Start();"}];
 
 function Menu_OC(){
 	const Menu = document.getElementById("MENU");

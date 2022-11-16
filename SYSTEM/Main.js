@@ -13,12 +13,6 @@ function Dialog(MSG, TITLE, LEVEL){
 
 window.addEventListener('load', function(e){
 	this.document.body.style.backgroundImage = ("url(./ETC/WALLPAPER/1.png)");
-
-	var ajax = new XMLHttpRequest()
-
-	ajax.open("POST", "http://127.0.0.1/GetFileList/");
-	ajax.withCredentials = true;
-	ajax.send();
 }, false);
 
 window.addEventListener('keypress', function(e){
