@@ -100,7 +100,6 @@ function TILE_CH(INDEX){
 }
 
 window.addEventListener('click', function(e){
-	console.log("くりっく" + e.target.className);
 	if(e.target.className.split(" ")[1] == "TILE_ITEM"){
 		console.log("タイルをクリックした！");
 

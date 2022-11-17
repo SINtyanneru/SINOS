@@ -1,0 +1,18 @@
+﻿;OS name
+OS_NAME=SINOS
+;Develop
+DEV=るみしすてむ
+
+;login.cs
+;Login
+LOGIN_MSG=ログインしてください
+;Login_Username
+LOGIN_UN=ユーザー名
+;Login_pas
+LOGIN_PAS=パスワード
+
+;Destop.cs
+;Clamshell menu
+CLSL=ClamShellメニュー
+HELP=ヘルプ！！
+PC_INFO=このコンピューターについて
