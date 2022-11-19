@@ -43,13 +43,16 @@ function WALLPAPER(){
 	}
 }
 
+var CONTEXTMENU;
+
 //右クリック禁止
 document.oncontextmenu = function () {return false;}
 
 window.addEventListener('load', function(e){
 	//背景画像読み込みを実行
 	WALLPAPER();
-	SaveFile("/aaa.txt")
+
+	CONTEXTMENU = document.getElementById("CONTEXTMENU");
 }, false);
 
 window.addEventListener('keypress', function(e){
@@ -59,9 +62,38 @@ window.addEventListener('keypress', function(e){
 window.addEventListener('click', function(e){
 	console.log("クリック")
 	console.log(e.target)
+
+	if(e.target.id != "CONTEXTMENU"){
+		CONTEXTMENU_EXIT();
+	}
 }, false);
 
 window.addEventListener('contextmenu', function(e){
-	console.log("右クリック")
-	console.log(e.target)
+	console.log("右クリック");
+	console.log(e.target);
+
+	//右クリックした場所
+	if(e.target.id == "DESKTOP_BACKGROUND"){
+		//デスクトップのコンテキストメニュー
+		CONTEXTMENU_EDIT("デスクトップ");
+		CONTEXTMENU_SHOW();
+	}else if(e.target.id == "MENUBAR"){
+		//メニューバーのコンテキストメニュー
+		CONTEXTMENU_EDIT("メニューバー");
+		CONTEXTMENU_SHOW();
+	}
 }, false);
+
+function CONTEXTMENU_EDIT(CONTENTS){
+	CONTEXTMENU.innerHTML = CONTENTS;
+}
+
+function CONTEXTMENU_SHOW(){
+	CONTEXTMENU.style.display = "block";
+	CONTEXTMENU.style.left = event.clientX + "px";	//位置を調整
+	CONTEXTMENU.style.top = event.clientY + "px";		//位置を調整
+}
+
+function CONTEXTMENU_EXIT(){
+	CONTEXTMENU.style.display = "none";
+}

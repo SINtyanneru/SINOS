@@ -28,19 +28,8 @@ function TILE_RELOAD(){
 }
 
 function TILE_CONTEXTMENU(e, INDEX){
-	const CONTEXTMENU = document.getElementById("TILE_CONTEXTMENU");
-
-	if(e.ctrlKey){
-		//コントロールキーを押している場合
-		CONTEXTMENU.innerHTML = "今選択してるのは～！ ：" + INDEX + "です！！<HR><BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\" style=\"width: 100%;\">" + "タイルの場所を変更" + "</BUTTON>";		//中に追加
-
-		CONTEXTMENU.style.left = e.clientX + "px";	//位置を調整
-		CONTEXTMENU.style.top = e.clientY + "px";		//位置を調整
-		CONTEXTMENU.style.display = "block";		//なんか、あれだよ、あれ
-	}else{
-		//押してねえぞ！！ファアアック
-		CONTEXTMENU.style.display = "none";		//これもあれだよ、うん
-	}
+	CONTEXTMENU_EDIT("今選択してるのは～！ ：" + INDEX + "です！！<HR><BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\" style=\"width: 100%;\">" + "タイルの場所を変更" + "</BUTTON>");		//中に追加
+	CONTEXTMENU_SHOW();
 }
 
 function TILE_CH(INDEX){
@@ -89,7 +78,7 @@ function TILE_CH(INDEX){
 				console.log("[ OK ]Canseled")
 			}
 
-			document.getElementById("TILE_CONTEXTMENU").style.display = "none";
+			CONTEXTMENU_EXIT();
 
 			//処理停止
 			clearInterval(set_int);
@@ -115,6 +104,16 @@ window.addEventListener('click', function(e){
 			}
 		}
 	}else{
-		document.getElementById("TILE_CONTEXTMENU").style.display = "none";
+	}
+});
+
+window.addEventListener("contextmenu", function(e){
+	if(e.target.className.split(" ")[1] == "TILE_ITEM"){
+		console.log("タイルを右クリックした！");
+
+		Clicked_Tile = e.target.className.split(" ")[0];	//Clicked_Tileに、タイルのIDをぶちこーん
+
+		TILE_CONTEXTMENU(e, e.target.className.split(" ")[0].split("_")[1]);
+	}else{
 	}
 });
