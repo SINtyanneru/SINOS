@@ -22,7 +22,7 @@ function controlPanel_mySettings(WindowID){
 					"<H1>個人設定設定</H1>"+
 					"<HR>"+
 					"<IMG id=\"controlPanel_BgFile_Preview_" + WindowID + "\" src=\"./ETC/Default_Background.png\" width=\"190px\"><BR>"+
-					"<INPUT type=\"file\" id=\"controlPanel_BgFile_" + WindowID + "\"  accept=\".jpg, .png, .gif\" onchange=\"BgImg_Ch_Preview(" + WindowID + ")\"><BUTTON onclick=\"BgImg_Ch(" + WindowID + ")\">背景画像変更</BUTTON>"
+					"<BUTTON onclick=\"BgImg_Ch(" + WindowID + ")\">背景画像変更</BUTTON>"
 
 	Window_Contents(MySettingHTML,0,WindowID);
 }
@@ -31,11 +31,30 @@ function controlPanel_mySettings(WindowID){
 //設定変更
 function BgImg_Ch(WindowID){
 	//背景画像変更
-	const element = document.getElementById('controlPanel_BgFile_' + WindowID);
-	const files = element.files;
+	const OFD = OpenFileDialog();
 
-	var blobUrl = window.URL.createObjectURL(files[0]);
-	this.document.body.style.backgroundImage = "url(" + blobUrl + ")"
+		//ファイルのデータをゲット
+	var FILELISTGET = FileDataGet(OFD);
+	var bin = atob(FILELISTGET.replace(/^.*,/, ''));
+	var buffer = new Uint8Array(bin.length);
+	for (var i = 0; i < bin.length; i++) {
+		buffer[i] = bin.charCodeAt(i);
+	}
+
+	//BLOBを作成
+	var blob = new Blob([buffer.buffer], {type: "image/png"});
+
+	var blobUrl = URL.createObjectURL(blob);
+	this.document.body.style.backgroundImage = "url(" + blobUrl + ")";
+
+	document.getElementById("controlPanel_BgFile_Preview_" + WindowID).src = blobUrl;
+
+	const WIR_JSON = "{"+
+		"\"WALLPAPER_TYPE\":\"USER\","+
+		"\"WALLPAPER_URL\":\"" + OFD + "\""+
+		"}"
+
+	console.log(SaveFile("/CONF/USER/" + SYSTEM_USERNAME + "/DESKTOP.json", WIR_JSON));
 }
 
 function BgImg_Ch_Preview(WindowID){

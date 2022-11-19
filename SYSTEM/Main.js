@@ -13,31 +13,34 @@ function Dialog(MSG, TITLE, LEVEL){
 
 function WALLPAPER(){
 	//背景画像の設定関連
-
+	try{
 	//背景画像のJSONを取得
 	const WALLPAPER_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERNAME + "/DESKTOP.json");
-	WALLPAPER_FILEGET.addEventListener("load", (e) => {
-		//JSONをJSONぱーす
-		const WALLPAPER_JSON = JSON.parse(WALLPAPER_FILEGET.responseText);
-
-		//背景画像の種類
-		if(WALLPAPER_JSON.WALLPAPER_TYPE == "SYSTEM"){
-			//システムの背景
-			this.document.body.style.backgroundImage = ("url(./ETC/WALLPAPER/" + WALLPAPER_JSON.WALLPAPER_URL + ")");
-		}else{
-			//カスタム背景
-			//ファイルのデータをゲット
-			var WALLPAPER_DATA = FileDataGet(WALLPAPER_JSON.WALLPAPER_URL);
-
-			WALLPAPER_DATA.addEventListener("load", (e) => {
-				//BLOBを作成
-				var blob = new Blob([WALLPAPER_DATA.response]);
-				console.log(URL.createObjectURL(blob));
-				this.document.body.style.backgroundImage = ("url(" + URL.createObjectURL(blob) + ")");
-			});
+	//JSONをJSONぱーす
+	const WALLPAPER_JSON = JSON.parse(WALLPAPER_FILEGET);
+	//背景画像の種類
+	if(WALLPAPER_JSON.WALLPAPER_TYPE == "SYSTEM"){
+		//システムの背景
+		this.document.body.style.backgroundImage = ("url(./ETC/WALLPAPER/" + WALLPAPER_JSON.WALLPAPER_URL + ")");
+	}else{
+		//カスタム背景
+		//ファイルのデータをゲット
+		var WALLPAPER_DATA = FileDataGet(WALLPAPER_JSON.WALLPAPER_URL);
+		//BLOBを作成
+		var bin = atob(WALLPAPER_DATA.replace(/^.*,/, ''));
+		var buffer = new Uint8Array(bin.length);
+		for (var i = 0; i < bin.length; i++) {
+			buffer[i] = bin.charCodeAt(i);
 		}
 
-	});
+		//BLOBを作成
+		var blob = new Blob([buffer.buffer]);
+		console.log(URL.createObjectURL(blob));
+		this.document.body.style.backgroundImage = ("url(" + URL.createObjectURL(blob) + ")");
+	}
+	}catch(e){
+		window.location.reload();
+	}
 }
 
 //右クリック禁止

@@ -30,16 +30,14 @@ function FILEMANAGER_FILELIST_RELOAD(WIndowID,Dir_Path){
 	//ファイルリストをゲット
 	var FILELISTGET = FileListGet(Dir_Path);
 	//ウィンドウに書き込み
-	FILELISTGET.addEventListener("load", (e) => {
-		JSON.parse(FILELISTGET.responseText).forEach(element => {
-			if(element.TYPE == "DIR"){
-				//ディレクトリの場合
-				Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + decodeURIComponent(atob(element.NAME)) + "')\">" + decodeURIComponent(atob(element.NAME)) + " | ディレクトリ</BUTTON><HR>",1,WIndowID);
-			}else{
-				//ファイルの場合
-				Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + decodeURIComponent(atob(element.NAME)) + "','" + decodeURIComponent(atob(element.NAME)) + "','" + element.MIME + "')\">" + decodeURIComponent(atob(element.NAME)) + " | ファイル</BUTTON><HR>",1,WIndowID);
-			}
-		});
+	JSON.parse(FILELISTGET).forEach(element => {
+		if(element.TYPE == "DIR"){
+			//ディレクトリの場合
+			Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + element.NAME + "')\">" + element.NAME + " | ディレクトリ</BUTTON><HR>",1,WIndowID);
+		}else{
+			//ファイルの場合
+			Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + element.NAME + "','" + element.NAME + "','" + element.MIME + "')\">" + element.NAME + " | ファイル</BUTTON><HR>",1,WIndowID);
+		}
 	});
 
 }
@@ -48,23 +46,29 @@ function FILEMANAGER_FILEDATA_LOAD(WIndowID,Dir_Path,FILENAME,MIMETYPE){
 	//ファイルのデータをゲット
 	var FILELISTGET = FileDataGet(Dir_Path);
 
-	FILELISTGET.addEventListener("load", (e) => {
-		//BLOBを作成
-		var blob = new Blob([FILELISTGET.response]);
-		switch(MIMETYPE){
-			case ".png":
-			case ".jpg":
-			case ".jpeg":
-			case ".gif":
-				//画像形式
-				console.log("[ FILE ]This file mimetype is picture");
-				IMGViewer_Start(URL.createObjectURL(blob),FILENAME);
-				break;
-			case ".txt":
-				//テキストドキュメント形式
-				console.log("[ FILE ]This file mimetype is text");
-				break;
-		}
-	});
+	var bin = atob(FILELISTGET.replace(/^.*,/, ''));
+    var buffer = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) {
+        buffer[i] = bin.charCodeAt(i);
+    }
+
+	//BLOBを作成
+	var blob = new Blob([buffer.buffer]);
+
+	console.log(FILELISTGET);
+	switch(MIMETYPE){
+		case ".png":
+		case ".jpg":
+		case ".jpeg":
+		case ".gif":
+			//画像形式
+			console.log("[ FILE ]This file mimetype is picture");
+			IMGViewer_Start(URL.createObjectURL(blob),FILENAME);
+			break;
+		case ".txt":
+			//テキストドキュメント形式
+			console.log("[ FILE ]This file mimetype is text");
+			break;
+	}
 
 }
