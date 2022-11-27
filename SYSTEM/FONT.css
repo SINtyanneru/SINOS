@@ -1,0 +1,13 @@
+/* Webフォントを定義 */
+
+@font-face {
+	font-family: 'hm';
+	/* フォント名 */
+	/* フォーマットごとにパスを指定 */
+	src: url('./FONT/hymmnos.ttf') format('truetype');
+}
+
+
+.hm{
+	font-family: hm;
+}
