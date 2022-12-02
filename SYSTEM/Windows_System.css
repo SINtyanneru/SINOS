@@ -1,13 +1,20 @@
 .WINDOW {
 	position: absolute;      /* OUTER に対して絶対座標 */
 	border: 2px solid black;
-	background: silver;
+	/*
+	background:
+		linear-gradient(217deg, rgba(0, 247, 255, 0.6), rgba(255,0,0,0) 70.71%),
+		linear-gradient(127deg, rgba(130, 213, 216, 0.6), rgba(0,255,0,0) 70.71%),
+		linear-gradient(336deg, rgba(23, 183, 189, 0.6), rgba(0,0,255,0) 70.71%);
+	*/
+	background: radial-gradient(rgba(138, 249, 255, 0.6), rgba(0, 247, 255, 0.6));
+	backdrop-filter: blur(5px);
 	width: 250px;
 	height: 150px;
 	min-width: 250px;
 	min-height: 150px;
 
-	box-shadow: 2px 2px 3px #ccc;
+	box-shadow: 2px 2px 3px rgb(0, 0, 0);
 
 	resize: both;            /* div の大きさを変更可能にする */
 	overflow: hidden;        /* 必要 */
