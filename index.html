@@ -1,5 +1,6 @@
 <DIV class="BOOTSCREEN" id="BOOTSCREEN">
-	<IMG id="BOOTSCREEN_IMG">
+	<IMG class="BOOTSCREEN_IMG" id="BOOTSCREEN_IMG">
+	<DIV class="BOOTSCREEN_LOG" id="BOOTSCREEN_LOG"></DIV>
 </DIV>
 
 <HTML>
@@ -16,16 +17,25 @@
 		<LINK REL="stylesheet" href="./SYSTEM/FONT.css">
 
 		<SCRIPT src="./SYSTEM/Boot.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]All SystemCSS Load!");</SCRIPT>
 		<SCRIPT src="./SYSTEM/IPL.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:IPL.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/Main.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:Main.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/Window_System.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:Window_System.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/TILE.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:TILE.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/Menu.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:Menu.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/DashBord.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:DashBord.js");</SCRIPT>
 
 		<!--OS API-->
 		<SCRIPT src="./SYSTEM/API/Window.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]API Load File:Window.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/API/File.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]API Load File:File.js");</SCRIPT>
 
 		<!--アプリ-->
 		<SCRIPT src="./ETC/3MOKU/Main.js"></SCRIPT>
@@ -37,6 +47,7 @@
 		<SCRIPT src="./ETC/TARMINAL/Main.js"></SCRIPT>
 	</HEAD>
 	<BODY>
+		<SCRIPT>BOOT_LOG("[ OK ]Body Created");</SCRIPT>
 		<DIV class="MENUBAR" id="MENUBAR">
 			<BUTTON onclick="Menu_OC()" style="width: 80px; height: 80px;">Start</BUTTON>	<!--スタートボタン-->
 			<DIV class="MENUBAR_CLOCK" id="MENUBAR_CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
@@ -97,3 +108,5 @@
 		</DIV>
 	</BODY>
 </HTML>
+
+<SCRIPT>BOOT_LOG("[ OK ]OK");</SCRIPT>

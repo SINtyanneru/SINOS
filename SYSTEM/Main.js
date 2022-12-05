@@ -12,6 +12,7 @@ function Dialog(MSG, TITLE, LEVEL){
 }
 
 function WALLPAPER(){
+	BOOT_LOG("[ *** ]Wall Paper Settings...");
 	//背景画像の設定関連
 	try{
 	//背景画像のJSONを取得
@@ -26,19 +27,28 @@ function WALLPAPER(){
 		//カスタム背景
 		//ファイルのデータをゲット
 		var WALLPAPER_DATA = FileDataGet(WALLPAPER_JSON.WALLPAPER_URL);
+		BOOT_LOG("[ OK ]WP File Get:" + WALLPAPER_JSON.WALLPAPER_URL);
 		//BLOBを作成
 		var bin = atob(WALLPAPER_DATA.replace(/^.*,/, ''));
 		var buffer = new Uint8Array(bin.length);
+		BOOT_LOG("[ OK ]WP Created buffer");
 		for (var i = 0; i < bin.length; i++) {
 			buffer[i] = bin.charCodeAt(i);
 		}
 
 		//BLOBを作成
 		var blob = new Blob([buffer.buffer]);
-		console.log(URL.createObjectURL(blob));
+		BOOT_LOG("[ OK ]Created WP Blob:" + URL.createObjectURL(blob));
 		this.document.body.style.backgroundImage = ("url(" + URL.createObjectURL(blob) + ")");
+		BOOT_LOG("[ OK ]Set WP");
+
+		BOOT_LOG("[ OK ]WP Setting Compleat!");
+
+		//現時点では、ここで読み込み終了なのでここで止める
+		setTimeout(function(){BOOT_CL();},2000);
 	}
 	}catch(e){
+		BOOT_LOG("[ Error ]Window Reload...");
 		window.location.reload();
 	}
 }
