@@ -1,4 +1,4 @@
-var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"}];
+var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"},{"ID":"TEST","NAME":"ログアウト","POS":"10","VOID":"LOGINUI_LOGOUT();"}];
 const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);
 var Clicked_Tile;
 

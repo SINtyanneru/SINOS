@@ -17,6 +17,7 @@ function BOOT_SCREEN(){
 
 function BOOT_CL(){
 	document.getElementById("BOOTSCREEN").style.display = "none";
+	LOGINUI_Start();
 }
 
 function BOOT_LOG(TEXT){

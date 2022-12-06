@@ -38,6 +38,7 @@
 			<SCRIPT>BOOT_LOG("[ OK ]API Load File:File.js");</SCRIPT>
 
 		<!--アプリ-->
+		<SCRIPT src="./ETC/LOGINUI/Main.js"></SCRIPT>
 		<SCRIPT src="./ETC/3MOKU/Main.js"></SCRIPT>
 		<SCRIPT src="./ETC/ControlPanel/Main.js"></SCRIPT>
 		<SCRIPT src="./ETC/Tours/Main.js"></SCRIPT>
@@ -54,8 +55,8 @@
 		</DIV>
 		<DIV class="DESKTOP" id="DESKTOP">
 
+			<!--ウィンドウエリア-->
 			<DIV class="WINDOW_AREA" id="WINDOW_AREA">
-				<!--ウィンドウエリア-->
 				<DIV class="DESKTOP_BACKGROUND" id="DESKTOP_BACKGROUND" style="width: 100%; height: 100%; background-color: transparent;">
 
 				</DIV>
@@ -63,9 +64,11 @@
 
 			<!--メニュー-->
 			<DIV class="MENU" id="MENU">
+				<!--アプリ一覧-->
 				<DIV class="APPLIST" id="APPLIST">
 
 				</DIV>
+				<!--タイル-->
 				<DIV class="TILE" id="TILE">
 					<DIV class="TILE_OWNER" id="TILE_OWNER">
 						<DIV class="TILE_0 TILE_ITEM" id="TILE_0" onclick="TILE_CONTEXTMENU(event, 0)"></DIV>
@@ -101,11 +104,14 @@
 				</DIV>
 			</DIV>
 		</DIV>
+		<!--コンテキストメニュー-->
 		<DIV class="CONTEXTMENU" id="CONTEXTMENU" style="display: none;">
 			あいうえお
 			<HR>
 			あいえうお
 		</DIV>
+
+
 	</BODY>
 </HTML>
 

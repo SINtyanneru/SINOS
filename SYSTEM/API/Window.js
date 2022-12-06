@@ -36,6 +36,13 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
+			case 2:
+				Window_Template =
+				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"position: fixed; top:" + Number(POS_Y) + "px; left:" + Number(POS_X) + "px; width: " + SIZE_W + "; height: "+ SIZE_H + "; z-index: 10000; resize: none;\">"+
+					"<DIV class=\"TITLE\" style=\"display: none; ;\"></DIV>"+
+					"<DIV class=\"CONTENTS\"></DIV>"+
+				"</DIV>";
+				break;
 			default:
 				return {"STATUS":"ERR","MSG":"Window Mode Err"};
 				break;
@@ -44,7 +51,7 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 		const Window_element = document.getElementById("WINDOW_AREA").innerHTML += Window_Template;
 
 		Window_List.push(ID);
-	
+
 		Window_List.forEach(element =>{
 			//ドラッグしたい要素
 			var div = document.getElementById(element);
