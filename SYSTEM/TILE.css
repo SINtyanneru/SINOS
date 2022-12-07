@@ -13,6 +13,8 @@
 	backdrop-filter: blur(10px);
 
 	box-shadow: -1px 0px 10px black;
+
+	overflow-y: scroll;
 }
 
 .TILE_OWNER{

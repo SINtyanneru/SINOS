@@ -8,9 +8,16 @@ var SYSTEM_USERNAME = "LOGINUI";
  * @param LEVEL ダイアログのレベル
  * */
 function Dialog(MSG, TITLE, LEVEL){
-	const music = new Audio('./ETC/SOUND/SINOS_NOTIFY_SOUND.mp3');
-	music.play();
-	alert(MSG);
+	switch(LEVEL){
+		case 0:
+			PlaySound("/ETC/SOUND/SINOS_NOTIFY_SOUND.wav");
+			alert(MSG);
+			break;
+		case 1:
+			PlaySound("/ETC/SOUND/SINOS_ERR_SOUND.wav");
+			alert(MSG);
+			break;
+	}
 }
 
 function MENUBAR_OC(MODE){
@@ -86,9 +93,29 @@ window.addEventListener('load', function(e){
 	CONTEXTMENU = document.getElementById("CONTEXTMENU");
 }, false);
 
-window.addEventListener('keypress', function(e){
-	console.log(e.keyCode);
+window.addEventListener("keydown", function(e){
+	console.log(e.key);
 	console.log(e.ctrlKey);
+	console.log(e.altKey);
+	console.log(e.shiftKey);
+	if(e.key == "t" || e.key == "T"){
+		if(e.ctrlKey){
+			if(e.altKey){
+				TARMINAL_Start();
+			}
+		}
+	}
+
+
+	if(e.key == "Enter"){
+		if(e.ctrlKey){
+			if(e.altKey){
+				if(e.shiftKey){
+					VOIDRUN_Start();
+				}
+			}
+		}
+	}
 }, false);
 
 window.addEventListener('click', function(e){

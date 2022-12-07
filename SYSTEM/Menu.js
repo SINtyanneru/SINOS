@@ -29,7 +29,7 @@ function Menu_AppList_Reload(){
 	const AppList_Element = document.getElementById("APPLIST");
 
 	Menu_AppList.forEach(element => {
-		AppList_Element.innerHTML += "<DIV class=\"APPLIST_ITEM\" onclick=\"" + element.VOID + " Menu_OC();\"> <IMG src=\"./ETC/" + element.ID +"/ICON.png\">" + element.NAME + "</DIV><HR>"
+		AppList_Element.innerHTML += "<DIV class=\"APPLIST_ITEM\" onclick=\"" + element.VOID + " Menu_OC();\"> <IMG width=\"16\" src=\"./ETC/" + element.ID +"/ICON.png\">" + element.NAME + "</DIV><HR>"
 	});
 }
 

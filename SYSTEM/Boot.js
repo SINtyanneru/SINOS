@@ -1,6 +1,5 @@
 const BOOTSCREEN_LOG = document.getElementById("BOOTSCREEN_LOG");
 var BOOTSCREEN_BOOT_TIMER;
-var BOOTSCREEN_BOOT_SOUND = true;
 function BOOT_SCREEN(){
 	var img = document.getElementById("BOOTSCREEN_IMG");
 
@@ -22,14 +21,7 @@ function BOOT_CL(){
 
 	clearInterval(BOOTSCREEN_BOOT_TIMER);
 
-	window.addEventListener("click", (e)=>{
-		if(BOOTSCREEN_BOOT_SOUND){
-			//なんで自動再生できないのよ、意味不明、ウェブ標準死ね
-			const music = new Audio('./ETC/SOUND/SINOS_BOOT_SOUND.mp3');
-			music.play();
-			BOOTSCREEN_BOOT_SOUND = false;
-		}
-	})
+	PlaySound("/ETC/SOUND/SINOS_BOOT_SOUND.wav");
 }
 
 function BOOT_LOG(TEXT){

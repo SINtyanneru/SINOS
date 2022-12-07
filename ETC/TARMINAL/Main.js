@@ -8,7 +8,7 @@ function TARMINAL_Start(){
 	//ウィンドウを作成
 	const Window_element = Window_Create("ターミナルちゃん " + TARMINAL_Version, 0, 0, 0, 500, 500);
 	//上のやつを描画
-	Window_Contents("<TEXTAREA readonly class=\"hm\" id=\"TARMINAL_TEXTAREA_" + Window_element.ID + "\" style=\"width: 100%; font-size: 50px; height: calc(100% - 100px); resize: none;\">SINOS Term" + TARMINAL_Version + "\n</TEXTAREA><INPUT class=\"hm\" id=\"TERMINAL_INPUT_" + Window_element.ID + "\" style=\"font-size: 50px; width: 100%;\" onkeydown=\"TARMINAL_TEXTINPUT(event, '" + Window_element.ID + "')\">",0,Window_element.ID);
+	Window_Contents("<TEXTAREA readonly id=\"TARMINAL_TEXTAREA_" + Window_element.ID + "\" style=\"width: 100%; height: calc(100% - 55px); resize: none;\">SINOS Term" + TARMINAL_Version + "\n</TEXTAREA><INPUT class=\"\" id=\"TERMINAL_INPUT_" + Window_element.ID + "\" style=\"width: 100%;\" onkeydown=\"TARMINAL_TEXTINPUT(event, '" + Window_element.ID + "')\">",0,Window_element.ID);
 	document.getElementById("TARMINAL_TEXTAREA_" + Window_element.ID).value += "\nSINOS>"
 }
 
