@@ -8,6 +8,8 @@ var SYSTEM_USERNAME = "LOGINUI";
  * @param LEVEL ダイアログのレベル
  * */
 function Dialog(MSG, TITLE, LEVEL){
+	const music = new Audio('./ETC/SOUND/SINOS_NOTIFY_SOUND.mp3');
+	music.play();
 	alert(MSG);
 }
 
@@ -86,6 +88,7 @@ window.addEventListener('load', function(e){
 
 window.addEventListener('keypress', function(e){
 	console.log(e.keyCode);
+	console.log(e.ctrlKey);
 }, false);
 
 window.addEventListener('click', function(e){
