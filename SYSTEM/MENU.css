@@ -2,10 +2,25 @@
 	border: solid;
 	border-width: 1px;
 
-	width: 100%;
+	width: 40%;
 	height: 100%;
 }
 
 .APPLIST_ITEM{
 	background-color: aquamarine;
+
+	transition: 0.1s;
+
+	user-select: none;
+}
+
+.APPLIST_ITEM > img{
+	pointer-events: none;
+}
+
+.APPLIST_ITEM:hover{
+	background-color: rgb(0, 255, 170);
+	cursor: pointer;
+
+	transition: 0.1s;
 }

@@ -10,12 +10,14 @@ function LOGINUI_Start(){
 	const WIndowID = Window_element.ID;
 
 
-	const LOGINUI_HTML = "<H1 style=\"position: fixed; bottom: 0px; left: 0px;\">Welcome to SINOS</H1>"+
-						"<DIV style=\"text-align: center; border: solid; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; width: 500px; height: 100px; background-color: silver;\">ログイン"+
+	const LOGINUI_HTML = "<H1 style=\"position: fixed; bottom: 0px; left: 0px; user-select: none;\">Welcome to SINOS</H1>"+
+						"<DIV style=\"text-align: center; border: solid; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; width: 500px; height: 300px; background-color: silver;\">"+
+						"<IMG src=\"./ETC/LOGINUI/BANNER.png\" style=\"width: 500px; pointer-events: none;\">"+
+						"<BR><R style=\"user-select: none;\">ログイン</R>"+
 						"<INPUT style=\"width: 100%;\" id=\"LOGINUI_USERNAME\" placeholder=\"ユーザー名\" value=\"Default\"><BR>"+
 						"<INPUT style=\"width: 100%;\" id=\"LOGINUI_PASS\" placeholder=\"パスワード\">"+
 						"<BR>"+
-						"<BUTTON onclick=\"LOGINUI_LOGIN('" + WIndowID + "');\">ログイン</BUTTON>"+
+						"<BUTTON onclick=\"LOGINUI_LOGIN('" + WIndowID + "');\">ログイン</BUTTON> | <BUTTON>シャットダウン</BUTTON> <BUTTON>再機動</BUTTON>"+
 						"</DIV>";
 
 	Window_Contents(LOGINUI_HTML,0,WIndowID);

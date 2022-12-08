@@ -32,6 +32,15 @@
 	user-select: none;       /* テキスト選択を禁止 */
 
 	border: solid;
+	border-width: 1px;
+
+	transition: 0.1s;
+}
+
+.TILE_ITEM:hover{
+	box-shadow: 0 0 3px 3px white;
+
+	transition: 0.1s;
 }
 
 .TILE_CONTEXTMENU{
