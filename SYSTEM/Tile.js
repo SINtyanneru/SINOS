@@ -1,4 +1,4 @@
-var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"},{"ID":"TEST","NAME":"ログアウト","POS":"10","VOID":"LOGINUI_LOGOUT();"}];
+var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"},{"ID":"LOGINUI","NAME":"ログアウト","POS":"10","VOID":"LOGINUI_LOGOUT();"}];
 const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);
 var Clicked_Tile;
 
@@ -19,9 +19,8 @@ function TILE_RELOAD(){
 
 	//一個一個追加
 	Tile_JSON.forEach(element => {
-		document.getElementById("TILE_" + element.POS).style = "background-image: url(./ETC/" + element.ID + "/TILE_ICON.png); background-size: contain; font-size:10px; cursor: pointer;";	//テキスト
 		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;	//JSON上で何個目のタイルか
-		document.getElementById("TILE_" + element.POS).innerHTML = "<R id=\"TILE_ITEM\" onclick=\"if(!event.ctrlKey){Menu_Close(); " + element.VOID + "}\" style=\"display:block; position: relative; top: 70px;\">" + element.NAME + "</R>";	//名前
+		document.getElementById("TILE_" + element.POS).innerHTML = "<R class=\"TILE_ITEM_OWNER\" id=\"TILE_ITEM_OWNER\" style=\"position: relative; top: 0px; font-size: 15px;\" onclick=\"if(!event.ctrlKey){Menu_Close(); " + element.VOID + "}\"><CANVAS id=\"TILE_" + element.POS + "_CANVAS\"></CANVAS><R style=\"display:block; position: relative; top: -20px; font-size: 15px;\">" + element.NAME + "</R></R>";
 
 		count++;
 	});
@@ -30,6 +29,32 @@ function TILE_RELOAD(){
 function TILE_CONTEXTMENU(e, INDEX){
 	CONTEXTMENU_EDIT("今選択してるのは～！ ：" + INDEX + "です！！<HR><BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\" style=\"width: 100%;\">" + "タイルの場所を変更" + "</BUTTON>");		//中に追加
 	CONTEXTMENU_SHOW();
+}
+
+function TILE_CANVAS(ID){
+	const TILE_JSON_Routes = Tile_JSON.map((obj) => {
+		return obj.ID;
+	});
+	const TILE_JSON_INDEX = TILE_JSON_Routes.indexOf(ID);
+
+	if(TILE_JSON_INDEX != -1){
+		const TILE_JSON_POS = Tile_JSON[TILE_JSON_INDEX].POS;
+
+		var canvas = document.getElementById("TILE_" + TILE_JSON_POS + "_CANVAS");
+		var ctx = canvas.getContext('2d')
+	
+		canvas.width = 90;
+		canvas.height = 90;
+
+		/*
+		ctx.font = '48px serif';
+		ctx.fillText('Hello world', 10, 50);
+		*/
+
+		return {"STATUS":"OK", "CTX":ctx};
+	}else{
+		return {"STATUS":"ERR"};
+	}
 }
 
 function TILE_CH(INDEX){

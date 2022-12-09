@@ -116,6 +116,10 @@ window.addEventListener("keydown", function(e){
 			}
 		}
 	}
+
+	if(e.key == "F12"){
+		chrome.webview.hostObjects.sync.class.DevToolOpen();
+	}
 }, false);
 
 window.addEventListener('click', function(e){

@@ -58,7 +58,7 @@ async function LOGINUI_LOGIN(WIndowID){
 		PERSONAL_SETTING_LOAD();
 
 		//演出
-		setTimeout(function(){Window_Close(WIndowID); MENUBAR_OC(1);}, 1000);
+		setTimeout(function(){Window_Close(WIndowID); MENUBAR_OC(1); PlaySound("/ETC/SOUND/SINOS_LOGIN_SOUND.wav");}, 1000);
 	}else{
 		Dialog("ログインに失敗しました！","ログイン", 1);
 	}

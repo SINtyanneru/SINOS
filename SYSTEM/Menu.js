@@ -1,5 +1,5 @@
 var Menu_Mode = false;
-var Menu_AppList = [{"ID":"3MOKU","NAME":"三目並べ","VOID":"sanmoki_Start();"},{"ID":"ControlPanel","NAME":"設定","VOID":"controlPanel_Start();"},{"ID":"FILEMAN","NAME":"ファイルマネージャー","VOID":"FILEMANAGER_start();"},{"ID":"Tours","NAME":"SINOSツアー","VOID":"sinos_tours_Start();"},{"ID":"TEXTEDITOR","NAME":"テキストエディター","VOID":"TEXTEDITOR_Start('NONE','');"},{"ID":"TARMINAL","NAME":"ターミナル","VOID":"TARMINAL_Start();"},{"ID":"TARMINAL","NAME":"るみうぇぶぶらうざ","VOID":"RWB_Start();"}];
+var Menu_AppList = [{"ID":"3MOKU","NAME":"三目並べ","VOID":"sanmoki_Start();"},{"ID":"ControlPanel","NAME":"設定","VOID":"controlPanel_Start();"},{"ID":"FILEMAN","NAME":"ファイルマネージャー","VOID":"FILEMANAGER_start();"},{"ID":"Tours","NAME":"SINOSツアー","VOID":"sinos_tours_Start();"},{"ID":"TEXTEDITOR","NAME":"テキストエディター","VOID":"TEXTEDITOR_Start('NONE','');"},{"ID":"TARMINAL","NAME":"ターミナル","VOID":"TARMINAL_Start();"},{"ID":"RumiWebBrowser","NAME":"るみうぇぶぶらうざ","VOID":"RWB_Start();"}];
 
 function Menu_OC(){
 	const Menu = document.getElementById("MENU");

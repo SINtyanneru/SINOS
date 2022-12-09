@@ -13,25 +13,32 @@ function TARMINAL_Start(){
 }
 
 function TARMINAL_TEXTINPUT(e,WINDOWID){
-	//何個目のコンソールかを識別するためのカウント
-	var count = 0;
-	//ﾌｫｰｴｯﾁを回すのだ
-	var TARMINAL_TEXTAREA = document.getElementById("TARMINAL_TEXTAREA_" + WINDOWID);
 	var TARMINAL_INPUT = document.getElementById("TERMINAL_INPUT_" + WINDOWID);
 	//キーはエンターキー？
 	if(e.key == "Enter"){
-		TARMINAL_TEXTAREA.value += "\n>" + TARMINAL_INPUT.value + "\n";
+		TARMINAL_LOG("\n>" + TARMINAL_INPUT.value + "\n", WINDOWID);
 
 		//コマンド処理
 		if(TARMINAL_INPUT.value == "tanzania"){
-			TARMINAL_TEXTAREA.value += "\nTANZANIA!!!\n";
+			TARMINAL_LOG("\nTANZANIA!!!\n", WINDOWID);
 			const music = new Audio('./ETC/TARMINAL/TANZANIA.mp3');
 			music.play();
 		}
+		if(TARMINAL_INPUT.value.slice(0, 2) == "cd"){
+			TARMINAL_LOG(TARMINAL_INPUT.value.split(" ")[1], WINDOWID);
+		}
 
-		TARMINAL_TEXTAREA.value += "\nOK";
+
+
+
 		//内容をリセット
+		TARMINAL_LOG("\n>", WINDOWID);
 		TARMINAL_INPUT.value = "";
-		TARMINAL_TEXTAREA.scrollTo(0, TARMINAL_TEXTAREA.scrollHeight);
 	}
+}
+
+function TARMINAL_LOG(TEXT, WINDOWID){
+	var TARMINAL_TEXTAREA = document.getElementById("TARMINAL_TEXTAREA_" + WINDOWID);
+	TARMINAL_TEXTAREA.value += TEXT + "\n";
+	TARMINAL_TEXTAREA.scrollTo(0, TARMINAL_TEXTAREA.scrollHeight);
 }

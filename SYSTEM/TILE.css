@@ -35,6 +35,14 @@
 	border-width: 1px;
 
 	transition: 0.1s;
+
+	width: 90px;
+	height: 90px;
+}
+
+.TILE_ITEM_OWNER > canvas{
+	width: 90px;
+	height: 90px;
 }
 
 .TILE_ITEM:hover{
