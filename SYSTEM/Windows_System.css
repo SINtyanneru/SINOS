@@ -51,3 +51,16 @@
 	height: 100%;
 	width: 50%;
 }
+
+/*閉じるボタン*/
+.WINDOW_EXIT_BTN{
+	background-color: rgb(255, 117, 117);
+}
+
+.WINDOW_EXIT_BTN:hover{
+	background-color: rgb(255, 78, 78);
+}
+
+.WINDOW_EXIT_BTN:active{
+	background-color: rgb(255, 0, 0);
+}

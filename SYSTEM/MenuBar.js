@@ -14,6 +14,7 @@ function MenuBar_RELOAD(){
 	//エレメント
 	var MENUBAR_CONTENTS = document.getElementById("MENUBAR_CONTENTS");
 
+	MENUBAR_CONTENTS.innerHTML = "";
 	//フォーエッチで、一つ一つ取得し、メニューバーエレメントにバボーン
 	MENUBAR_JSON_FILE.forEach(element => {
 		MENUBAR_CONTENTS.innerHTML += element;

@@ -103,7 +103,9 @@ window.addEventListener("keydown", function(e){
 	if(e.key == "t" || e.key == "T"){
 		if(e.ctrlKey){
 			if(e.altKey){
-				TARMINAL_Start();
+				if(LOGIN){//ログインしてるう？
+					TARMINAL_Start();
+				}
 			}
 		}
 	}
@@ -113,7 +115,9 @@ window.addEventListener("keydown", function(e){
 		if(e.ctrlKey){
 			if(e.altKey){
 				if(e.shiftKey){
-					VOIDRUN_Start();
+					if(LOGIN){//ログインしてるう？
+						VOIDRUN_Start();
+					}
 				}
 			}
 		}

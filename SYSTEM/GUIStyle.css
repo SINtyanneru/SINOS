@@ -1,0 +1,28 @@
+/*ボタン*/
+BUTTON{
+	background-color: rgb(235, 246, 255);
+
+	border: solid;
+	border-style: double;
+}
+
+BUTTON:hover{
+	background-color: rgb(194, 227, 255);
+}
+
+BUTTON:active{
+	background-color: rgb(134, 198, 255);
+}
+/*INPUT(テキストボックス)*/
+INPUT[type=text]{
+	background-color: rgb(235, 246, 255);
+
+	border: solid;
+	border-width: 1px;
+}
+INPUT[type=text]:hover{
+	background-color: rgb(194, 227, 255);
+}
+INPUT[type=text]:focus{
+	background-color: rgb(134, 198, 255);
+}

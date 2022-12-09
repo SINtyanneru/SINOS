@@ -3,19 +3,21 @@
  */
 
 var LOGINUI_LOGOUT_ = false;
+var LOGIN = false;
 
 function LOGINUI_Start(){
 	MENUBAR_OC(0);
 	const Window_element = Window_Create("LoginUI",2,0,0,"100%","100%");
 	const WIndowID = Window_element.ID;
 
+	LOGIN = false;
 
 	const LOGINUI_HTML = "<H1 style=\"position: fixed; bottom: 0px; left: 0px; user-select: none;\">Welcome to SINOS</H1>"+
 						"<DIV style=\"text-align: center; border: solid; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; width: 500px; height: 300px; background-color: silver;\">"+
 						"<IMG src=\"./ETC/LOGINUI/BANNER.png\" style=\"width: 500px; pointer-events: none;\">"+
 						"<BR><R style=\"user-select: none;\">ログイン</R>"+
-						"<INPUT style=\"width: 100%;\" id=\"LOGINUI_USERNAME\" placeholder=\"ユーザー名\" value=\"Default\"><BR>"+
-						"<INPUT style=\"width: 100%;\" id=\"LOGINUI_PASS\" placeholder=\"パスワード\">"+
+						"<INPUT type=\"text\" style=\"width: 100%;\" id=\"LOGINUI_USERNAME\" placeholder=\"ユーザー名\" value=\"Default\"><BR>"+
+						"<INPUT type=\"text\" style=\"width: 100%;\" id=\"LOGINUI_PASS\" placeholder=\"パスワード\">"+
 						"<BR>"+
 						"<BUTTON onclick=\"LOGINUI_LOGIN('" + WIndowID + "');\">ログイン</BUTTON> | <BUTTON>シャットダウン</BUTTON> <BUTTON>再機動</BUTTON>"+
 						"</DIV>";
@@ -54,6 +56,7 @@ async function LOGINUI_LOGIN(WIndowID){
 		Window_Contents(LOGIN_NOW_HTML,0,WIndowID);
 		SYSTEM_USERNAME = USERNAME.value;
 
+		LOGIN = true;
 		//個人用設定を再読み込み
 		PERSONAL_SETTING_LOAD();
 

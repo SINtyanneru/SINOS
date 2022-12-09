@@ -9,7 +9,7 @@ function FILEMANAGER_start(){
 	//ウィンドウを作成
 	const Window_element = Window_Create("ファイルマネージャー", 0, 0, 0, 500, 500);
 	//ウィンドウの中身をリロード
-	FILEMANAGER_FILELIST_RELOAD(Window_element.ID,"/HOME");
+	FILEMANAGER_FILELIST_RELOAD(Window_element.ID,"/HOME/" + SYSTEM_USERNAME);
 }
 
 function FILEMANAGER_FILELIST_RELOAD(WIndowID,Dir_Path){
@@ -122,6 +122,11 @@ function FILEMANAGER_FILEDATA_LOAD(WIndowID,File_Path,FILENAME,MIMETYPE){
 			console.log("[ FILE ]This file mimetype is text");
 
 			TEXTEDITOR_Start(File_Path,FILENAME);
+			break;
+		case "json":
+			//テキストドキュメント形式
+			console.log("[ FILE ]This file mimetype is json");
+			JSONVIEWER_Start(File_Path,FILENAME);
 			break;
 	}
 
