@@ -1,13 +1,17 @@
-var Tile_JSON = [{"ID":"TEST","NAME":"るみしすてむ","POS":"0","VOID":"window.open('https://rumiserver.com/rumisystem/','_blank')"},{"ID":"LOGINUI","NAME":"ログアウト","POS":"10","VOID":"LOGINUI_LOGOUT();"}];
-const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);
-var Clicked_Tile;
-
-window.addEventListener('load', (event) => {
-	TILE_RELOAD();
-});
+var Tile_JSON = [];	//タイルのJSON(ファイルを取得して入れるので、最初は空っぽ)
+const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);//タイルの数分これを置くよ。
+var Clicked_Tile;//クリックしたタイル
 
 function TILE_RELOAD(){
 	//タイルをリロード
+
+	//タイルのJSONを取得
+	const TILE_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERNAME + "/TILE.json");
+	//JSONをJSONぱーす
+	const TILE_JSON_FILE = JSON.parse(TILE_FILEGET);
+	//パースした塊を変数にバボーン
+	Tile_JSON = TILE_JSON_FILE;
+
 
 	//タイルを一回抹殺
 	Tile_ID.forEach(element => {

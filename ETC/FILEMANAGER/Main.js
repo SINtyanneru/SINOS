@@ -1,5 +1,8 @@
 /**
  * ファイルマネージャー
+ *
+ * 上手な人はいい感じに書くんだろうけど
+ * 私にはこういうことしかできないの、
  */
 
 function FILEMANAGER_start(){
@@ -30,16 +33,62 @@ function FILEMANAGER_FILELIST_RELOAD(WIndowID,Dir_Path){
 	//ファイルリストをゲット
 	var FILELISTGET = FileListGet(Dir_Path);
 	//ウィンドウに書き込み
-	JSON.parse(FILELISTGET).forEach(element => {
-		if(element.TYPE == "DIR"){
-			//ディレクトリの場合
-			Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + element.NAME + "')\">" + element.NAME + " | ディレクトリ</BUTTON><HR>",1,WIndowID);
-		}else{
-			//ファイルの場合
-			console.log(element.MIME);
-			Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + element.NAME + "','" + element.NAME + "','" + element.MIME + "')\">" + element.NAME + " | ファイル</BUTTON><HR>",1,WIndowID);
-		}
+	if(FileExists(Dir_Path + "/-_-FILE.json") == "EXT"){
+		//FILE.jsonがある場合
+		console.log("[ FM ]FILE.json is Exists");//ログ
+		//ファイルのリストを塊にしてフォーエッチする
+		JSON.parse(FILELISTGET).forEach(element_FL => {
+			//FILE.jsonを読み込み
+			var FILESETTING_TGET = FileTextGet(Dir_Path + "/-_-FILE.json");
+			//読み込んだやつを塊にしてフォーエッチする
+			JSON.parse(FILESETTING_TGET).forEach(element_FS => {
+				//IFで、FILE.jsonの[NAME]と一致するかをちぇっく
+				if(element_FS.NAME == element_FL.NAME){
+					//一致する
+					if(element_FL.TYPE == "DIR"){
+						//ディレクトリの場合
+						//ディスプレイ名が、NONEであるか
+						if(element_FS.DISPLAY_NAME != "NONE"){
+							//NONEじゃない
+							//表示する
+							Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "')\" style=\"position: absolute; top:" + element_FS.POSY + "; left:" + element_FS.POSX + ";\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/FOLDER.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FS.DISPLAY_NAME + "</BUTTON>",1,WIndowID);
+						}else{//NONEなので、もとのファイル名を表示する
+							//表示する
+							Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "')\" style=\"position: absolute; top:" + element_FS.POSY + "; left:" + element_FS.POSX + ";\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/FOLDER.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FL.NAME + "</BUTTON>",1,WIndowID);
+						}
+					}else{
+						//ファイルの場合
+						if(element_FL.NAME.slice(0,3) != "-_-"){	//ファイルの先頭文字が-_-では無い
+							//ディスプレイ名が、NONEであるか
+							if(element_FS.DISPLAY_NAME != "NONE"){
+								//NONEじゃない
+								//表示する
+								Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "','" + element_FS.DISPLAY_NAME + "','" + element_FL.MIME + "')\" style=\"position: absolute; top:" + element_FS.POSY + "; left:" + element_FS.POSX + ";\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/TXT.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FS.DISPLAY_NAME + "</BUTTON>",1,WIndowID);
+							}else{//NONEなので、もとのファイル名を表示する
+								//表示する
+								Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "','" + element_FL.NAME + "','" + element_FL.MIME + "')\" style=\"position: absolute; top:" + element_FS.POSY + "; left:" + element_FS.POSX + ";\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/TXT.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FL.NAME + "</BUTTON>",1,WIndowID);
+							}
+						}//ファイルの先頭文字が-_-の場合は表示しない(システムファイルなので)
+					}
+				}//一致しない場合の処理は無し、
+			});
+		});
+	}else{
+		//FILE.jsonが無い場合(通常の動作)
+		//ファイルのリストを塊にしてフォーエッチする
+		JSON.parse(FILELISTGET).forEach(element_FL => {
+			if(element_FL.TYPE == "DIR"){
+				//ディレクトリの場合
+				Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILELIST_RELOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "')\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/FOLDER.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FL.NAME + "</BUTTON>",1,WIndowID);
+			}else{
+				//ファイルの場合
+				if(element_FL.NAME.slice(0,3) != "-_-"){	//ファイルの先頭文字が-_-では無い
+					//表示する
+					Window_Contents("<BUTTON onclick=\"FILEMANAGER_FILEDATA_LOAD('" + WIndowID + "', '" + Dir_Path + "/" + element_FL.NAME + "','" + element_FL.NAME + "','" + element_FL.MIME + "')\">" + "<IMG src=\"./ETC/FILEMANAGER/FILE_ICON/TXT.png\" style=\"width: 50px; height: 50px;\"><BR>" + element_FL.NAME + "</BUTTON>",1,WIndowID);
+				}//ファイルの先頭文字が-_-の場合は表示しない(システムファイルなので)
+			}
 	});
+	}
 
 }
 

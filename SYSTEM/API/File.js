@@ -10,6 +10,10 @@ function FileDataGet(Path){
 	return chrome.webview.hostObjects.sync.class.FileDataGet(Path);
 }
 
+function FileExists(Path){
+	return chrome.webview.hostObjects.sync.class.FileExists(Path);
+}
+
 function OpenFileDialog(){
 	return chrome.webview.hostObjects.sync.class.OpenFileDialog();
 }

@@ -30,6 +30,8 @@ function MENUBAR_OC(MODE){
 
 function PERSONAL_SETTING_LOAD(){
 	WALLPAPER();
+	MenuBar_RELOAD();
+	TILE_RELOAD();
 }
 
 function WALLPAPER(){
@@ -115,10 +117,6 @@ window.addEventListener("keydown", function(e){
 				}
 			}
 		}
-	}
-
-	if(e.key == "F12"){
-		chrome.webview.hostObjects.sync.class.DevToolOpen();
 	}
 }, false);
 

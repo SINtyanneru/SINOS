@@ -28,6 +28,8 @@
 			<SCRIPT>BOOT_LOG("[ OK ]Load File:TILE.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/Menu.js"></SCRIPT>
 			<SCRIPT>BOOT_LOG("[ OK ]Load File:Menu.js");</SCRIPT>
+		<SCRIPT src="./SYSTEM/MenuBar.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:MenuBar.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/DashBord.js"></SCRIPT>
 			<SCRIPT>BOOT_LOG("[ OK ]Load File:DashBord.js");</SCRIPT>
 
@@ -36,7 +38,7 @@
 			<SCRIPT>BOOT_LOG("[ OK ]API Load File:Window.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/API/File.js"></SCRIPT>
 			<SCRIPT>BOOT_LOG("[ OK ]API Load File:File.js");</SCRIPT>
-	<SCRIPT src="./SYSTEM/API/Sound.js"></SCRIPT>
+		<SCRIPT src="./SYSTEM/API/Sound.js"></SCRIPT>
 			<SCRIPT>BOOT_LOG("[ OK ]API Load File:Sound.js");</SCRIPT>
 
 		<!--アプリ-->
@@ -55,7 +57,7 @@
 	<BODY>
 		<SCRIPT>BOOT_LOG("[ OK ]Body Created");</SCRIPT>
 		<DIV class="MENUBAR" id="MENUBAR">
-			<BUTTON onclick="Menu_OC()" style="width: 80px; height: 80px;">Start</BUTTON>	<!--スタートボタン-->
+			<DIV class="MENUBAR_CONTENTS" id="MENUBAR_CONTENTS"></DIV>
 			<DIV class="MENUBAR_CLOCK" id="MENUBAR_CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
 		</DIV>
 		<DIV class="DESKTOP" id="DESKTOP">
