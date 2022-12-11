@@ -5,7 +5,7 @@ var MENUBAR_JSON = [];
 
 function MenuBar_RELOAD(){
 	//メニューバーのJSONを取得
-	const MENUBAR_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERNAME + "/MENUBAR.json");
+	const MENUBAR_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERID + "/MENUBAR.json");
 	//JSONをJSONぱーす
 	const MENUBAR_JSON_FILE = JSON.parse(MENUBAR_FILEGET);
 	//パースした塊を変数にバボーン

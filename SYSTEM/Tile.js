@@ -6,7 +6,7 @@ function TILE_RELOAD(){
 	//タイルをリロード
 
 	//タイルのJSONを取得
-	const TILE_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERNAME + "/TILE.json");
+	const TILE_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERID + "/TILE.json");
 	//JSONをJSONぱーす
 	const TILE_JSON_FILE = JSON.parse(TILE_FILEGET);
 	//パースした塊を変数にバボーン

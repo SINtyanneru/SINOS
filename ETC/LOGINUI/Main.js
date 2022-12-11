@@ -12,14 +12,26 @@ function LOGINUI_Start(){
 
 	LOGIN = false;
 
+	var USERLIST = "";
+	//背景画像のJSONを取得
+	const USERLIST_FILEGET = FileTextGet("/CONF/USER/LIST.json");
+	//JSONをJSONぱーす
+	const USERLIST_JSON = JSON.parse(USERLIST_FILEGET);
+	USERLIST_JSON.forEach(element => {
+		if(element.ACTIVE == "TRUE"){
+			USERLIST += "<OPTION value=\"" + element.USERID + "\">" + element.USERNAME + "</OPTION>";
+		}
+	});
+
 	const LOGINUI_HTML = "<H1 style=\"position: fixed; bottom: 0px; left: 0px; user-select: none;\">Welcome to SINOS</H1>"+
 						"<DIV style=\"text-align: center; border: solid; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; width: 500px; height: 300px; background-color: silver;\">"+
 						"<IMG src=\"./ETC/LOGINUI/BANNER.png\" style=\"width: 500px; pointer-events: none;\">"+
 						"<BR><R style=\"user-select: none;\">ログイン</R>"+
-						"<INPUT type=\"text\" style=\"width: 100%;\" id=\"LOGINUI_USERNAME\" placeholder=\"ユーザー名\" value=\"Default\"><BR>"+
+						"<SELECT style=\"width: 100%;\" id=\"LOGINUI_USERNAME\">"+ USERLIST + "</SELECT>"+
+						"<BR>"+
 						"<INPUT type=\"text\" style=\"width: 100%;\" id=\"LOGINUI_PASS\" placeholder=\"パスワード\">"+
 						"<BR>"+
-						"<BUTTON onclick=\"LOGINUI_LOGIN('" + WIndowID + "');\">ログイン</BUTTON> | <BUTTON>シャットダウン</BUTTON> <BUTTON>再機動</BUTTON>"+
+						"<BUTTON onclick=\"LOGINUI_LOGIN('" + WIndowID + "');\">ログイン</BUTTON> | <BUTTON>シャットダウン</BUTTON> <BUTTON onclick=\"SYSTEM_RELOAD();\">再機動</BUTTON>"+
 						"</DIV>";
 
 	Window_Contents(LOGINUI_HTML,0,WIndowID);
@@ -27,19 +39,19 @@ function LOGINUI_Start(){
 
 async function LOGINUI_LOGIN(WIndowID){
 	var RESULT = false;
-	const USERNAME = document.getElementById("LOGINUI_USERNAME");
+	const USERID = document.getElementById("LOGINUI_USERNAME");
 	const PASS = document.getElementById("LOGINUI_PASS");
 	const digest = await sha256(PASS.value);
 
 	const LOGIN_NOW_HTML = "<H1>ようこそ</H1>";
 
-	//背景画像のJSONを取得
+	//ユーザーのJSONを取得
 	const USERLIST_FILEGET = FileTextGet("/CONF/USER/LIST.json");
 	//JSONをJSONぱーす
 	const USERLIST_JSON = JSON.parse(USERLIST_FILEGET);
 
 	USERLIST_JSON.forEach(element => {
-		if(element.USERNAME == USERNAME.value){
+		if(element.USERID == USERID.value){
 			if(element.ACTIVE == "TRUE"){
 				console.log(digest);
 				if(element.PASS == digest){
@@ -54,7 +66,7 @@ async function LOGINUI_LOGIN(WIndowID){
 
 	if(RESULT){
 		Window_Contents(LOGIN_NOW_HTML,0,WIndowID);
-		SYSTEM_USERNAME = USERNAME.value;
+		SYSTEM_USERID = USERID.value;
 
 		LOGIN = true;
 		//個人用設定を再読み込み
@@ -68,7 +80,7 @@ async function LOGINUI_LOGIN(WIndowID){
 }
 
 function LOGINUI_LOGOUT(){
-	SYSTEM_USERNAME = "LOGINUI";
+	SYSTEM_USERID = "LOGINUI";
 
 	LOGINUI_LOGOUT_ = true;
 

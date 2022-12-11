@@ -1,4 +1,4 @@
-var SYSTEM_USERNAME = "LOGINUI";
+var SYSTEM_USERID = "LOGINUI";
 
 /** Dialog(メッセージ, レベル)
  * レベル0 => ただのメッセージ
@@ -39,7 +39,7 @@ function WALLPAPER(){
 	//背景画像の設定関連
 	try{
 		//背景画像のJSONを取得
-		const WALLPAPER_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERNAME + "/DESKTOP.json");
+		const WALLPAPER_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERID + "/DESKTOP.json");
 		//JSONをJSONぱーす
 		const WALLPAPER_JSON = JSON.parse(WALLPAPER_FILEGET);
 		//背景画像の種類
@@ -70,7 +70,7 @@ function WALLPAPER(){
 		BOOT_LOG("[ OK ]WP Setting Compleat!");
 
 		//ログインしてないので、こうする
-		if(SYSTEM_USERNAME == "LOGINUI"){
+		if(SYSTEM_USERID == "LOGINUI"){
 			//通常だと、ログアウト時にも2000ms待ってしまうので、ここでログアウトされたかをチェック
 			if(LOGINUI_LOGOUT_ == false){
 				//現時点では、ここで読み込み終了なのでここで止める
@@ -82,6 +82,16 @@ function WALLPAPER(){
 		window.location.reload();
 	}
 }
+
+function SYSTEM_RELOAD(){
+	//再機動
+	window.location.reload();
+}
+
+function SYSTEM_SHUTDOWN(){
+	//シャットダウン
+}
+
 
 var CONTEXTMENU;
 
