@@ -1,4 +1,5 @@
 var SYSTEM_USERID = "LOGINUI";
+var SYSTEM_USERPERMISSION = "USER";
 
 /** Dialog(メッセージ, レベル)
  * レベル0 => ただのメッセージ

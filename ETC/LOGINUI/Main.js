@@ -49,12 +49,14 @@ async function LOGINUI_LOGIN(WIndowID){
 	const USERLIST_FILEGET = FileTextGet("/CONF/USER/LIST.json");
 	//JSONをJSONぱーす
 	const USERLIST_JSON = JSON.parse(USERLIST_FILEGET);
+	var PERMISSION;
 
 	USERLIST_JSON.forEach(element => {
 		if(element.USERID == USERID.value){
 			if(element.ACTIVE == "TRUE"){
 				console.log(digest);
 				if(element.PASS == digest){
+					PERMISSION = element.PERMISSION;
 					RESULT = true;
 				}
 			}else{
@@ -67,6 +69,7 @@ async function LOGINUI_LOGIN(WIndowID){
 	if(RESULT){
 		Window_Contents(LOGIN_NOW_HTML,0,WIndowID);
 		SYSTEM_USERID = USERID.value;
+		SYSTEM_USERPERMISSION = PERMISSION;
 
 		LOGIN = true;
 		//個人用設定を再読み込み
