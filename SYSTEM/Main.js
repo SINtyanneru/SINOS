@@ -1,5 +1,6 @@
 var SYSTEM_USERID = "LOGINUI";
 var SYSTEM_USERPERMISSION = "USER";
+const OSVERSION = 5.0;
 
 /** Dialog(メッセージ, レベル)
  * レベル0 => ただのメッセージ
@@ -93,6 +94,22 @@ function SYSTEM_SHUTDOWN(){
 	//シャットダウン
 }
 
+//アップデートチェック
+function UPDATE_CHECK(){
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "https://rumiserver.com/API/SINOS/UPDATE_CHECK.php");
+	ajax.addEventListener("load", (e)=>{
+		const VARSION_JSON = JSON.parse(ajax.responseText);
+		if(OSVERSION == VARSION_JSON.LATESTVAR){
+			console.log("[ UPDATE ]OS Latest");
+		}else{
+			console.log("[ UPDATE ]OS Update Request");
+			alert("アップデートを開始します。\n/ETC/SINOSUP/UPDATE.zipを解凍し、実行してください");
+			DownloadFile(VARSION_JSON.FILEPATH, "/ETC/SINOSUP/UPDATE.zip")
+		}
+	});
+	ajax.send();
+}
 
 var CONTEXTMENU;
 
@@ -100,6 +117,8 @@ var CONTEXTMENU;
 document.oncontextmenu = function () {return false;}
 
 window.addEventListener('load', function(e){
+	UPDATE_CHECK();
+
 	//背景画像読み込みを実行
 	WALLPAPER();
 

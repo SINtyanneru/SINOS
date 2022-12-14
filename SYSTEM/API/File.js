@@ -21,3 +21,7 @@ function OpenFileDialog(){
 function SaveFile(Path, DATA){
 	return chrome.webview.hostObjects.sync.class.SaveFile(Path, DATA);
 }
+
+function DownloadFile(URL, Path){
+	return chrome.webview.hostObjects.sync.class.UpDownloadFile(URL, Path);
+}
