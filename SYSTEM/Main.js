@@ -76,7 +76,7 @@ function WALLPAPER(){
 			//通常だと、ログアウト時にも2000ms待ってしまうので、ここでログアウトされたかをチェック
 			if(LOGINUI_LOGOUT_ == false){
 				//現時点では、ここで読み込み終了なのでここで止める
-				setTimeout(function(){BOOT_CL();},2000);
+				setTimeout(function(){BOOT_CL();},8000);
 			}
 		}
 	}catch(e){

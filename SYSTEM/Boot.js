@@ -3,15 +3,19 @@ var BOOTSCREEN_BOOT_TIMER;
 function BOOT_SCREEN(){
 	var img = document.getElementById("BOOTSCREEN_IMG");
 
-	var IMG_COUNT = 53;
+	var IMG_COUNT = 131;
 
-	var TIME = 100;
+	var TIME = 50;
 
 	BOOT_LOG("[ OK ]BootSplash load");
 	index = 0;
 	BOOTSCREEN_BOOT_TIMER = setInterval(function() {
-		img.setAttribute("src", "./etc/BOOT_SCREEN/" + index + ".png");
-		index = ++index % IMG_COUNT;
+		if(index > IMG_COUNT){
+
+		}else{
+			img.setAttribute("src", "./etc/BOOT_SCREEN/" + ( '000' + index ).slice( -3 ) + ".png");
+			index = ++index % IMG_COUNT;
+		}
 	}, TIME);
 }
 
