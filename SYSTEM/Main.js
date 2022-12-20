@@ -179,6 +179,19 @@ window.addEventListener('contextmenu', function(e){
 	}
 }, false);
 
+window.onerror = function (msg, file, line, column, err) {
+    /*
+    msg: error message
+    file: file path
+    line: row number
+    column: column number
+    err: error object
+    */
+    //alert(msg + file + ':' + line);
+	SaveFile("/ETC/ERR/Log.txt", "[ ERROR ] <" + column + "> " + msg + " | " + file + ':' + line + "\n");
+	SYSTEM_ERROR();
+};
+
 function CONTEXTMENU_EDIT(CONTENTS){
 	CONTEXTMENU.innerHTML = CONTENTS;
 }
