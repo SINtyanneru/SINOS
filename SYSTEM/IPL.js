@@ -5,4 +5,9 @@ window.onload = function(){
 	BOOT_SCREEN();
 
 	BOOT_LOG("[ OK ]Plz Wait....");
+	BOOT_LOG("[ *** ]プロダクトキーを確認,,,,");
 };
+
+function PRODUCTKET(KEY){
+
+}
