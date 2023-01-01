@@ -25,14 +25,20 @@ function TARMINAL_TEXTINPUT(e,WINDOWID){
 			music.play();
 		}
 		if(TARMINAL_INPUT.value.slice(0, 2) == "cd"){
-			TARMINAL_LOG(TARMINAL_INPUT.value.split(" ")[1], WINDOWID);
+			const DIR_PATH = TARMINAL_INPUT.value.split(" ")[1];
+			//指定されてる？
+			if(DIR_PATH != undefined){
+				//ディレクトリ移動
+			}else{
+				TARMINAL_LOG("使い方:「cd [ディレクトリのパス]」", WINDOWID);
+			}
 		}
 
 
 
 
 		//内容をリセット
-		TARMINAL_LOG("\n>", WINDOWID);
+		TARMINAL_LOG("\n", WINDOWID);
 		TARMINAL_INPUT.value = "";
 	}
 }

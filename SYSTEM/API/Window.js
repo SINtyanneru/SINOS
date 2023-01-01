@@ -6,6 +6,22 @@ function Window_Close(element){
 	console.log("[ OK ]Close Window :" + element);
 
 	Window_List.splice(Window_List.indexOf(element));
+
+	TASKBAR_DATA.splice(TASKBAR_DATA.indexOf(element));
+	TASKBAR_RELOAD();
+}
+
+//ウィンドウ最小化
+function Window_Minimize(element){
+	document.getElementById(element).style.display = "none";
+}
+//ウィンドウを表示
+function Window_Nomalize(element){
+	document.getElementById(element).style.display = "block";
+}
+//ウィンドウをアクティブに
+function Window_Active(element){
+	document.getElementById(element).style.zIndex = ZIndex_max++;
 }
 
 /**
@@ -25,14 +41,14 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 			case 0:
 				Window_Template =
 				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
-					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON>_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" class=\"WINDOW_EXIT_BTN\">X</BUTTON></R></DIV>"+
+					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" class=\"WINDOW_EXIT_BTN\">X</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
 			case 1:
 				Window_Template =
 				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
-					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON>_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" disabled>X</BUTTON></R></DIV>"+
+					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" disabled>X</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
@@ -47,7 +63,7 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 				return {"STATUS":"ERR","MSG":"Window Mode Err"};
 				break;
 		}
-	
+
 		const Window_element = document.getElementById("WINDOW_AREA").innerHTML += Window_Template;
 
 		Window_List.push(ID);
@@ -61,7 +77,12 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 			var drag = new MouseDrag();
 			drag.init(div, title);
 		});
-	
+
+		TASKBAR_DATA.push({"ID":ID, "NAME":TITLE});
+		TASKBAR_RELOAD();
+
+		Window_Active(ID)
+
 		return {"STATUS":"OK","ID":ID};
 	}catch(ex){
 		return {"STATUS":"ERR","MSG":ex};
@@ -75,6 +96,7 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
  * @param {"ID"} element 
  */
 function Window_Contents(CONTENTS,MODE, element){
+	console.log(element);
 	if(MODE == 0){
 		var DIV = document.getElementById(element);
 		DIV.querySelector(".CONTENTS").innerHTML = CONTENTS;

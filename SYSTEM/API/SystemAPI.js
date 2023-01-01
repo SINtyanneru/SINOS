@@ -1,6 +1,6 @@
 //エラー時
 function SYSTEM_ERROR(){
-	return chrome.webview.hostObjects.sync.class.Stop();
+	//return chrome.webview.hostObjects.sync.class.Stop();
 }
 
 //重大なエラーで停止

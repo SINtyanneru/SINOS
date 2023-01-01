@@ -33,7 +33,7 @@ function MENUBAR_OC(MODE){
 function PERSONAL_SETTING_LOAD(){
 	WALLPAPER();
 	MenuBar_RELOAD();
-	TILE_RELOAD();
+	TILE_FLOAD();
 }
 
 function WALLPAPER(){

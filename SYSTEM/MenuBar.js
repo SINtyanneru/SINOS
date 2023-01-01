@@ -2,6 +2,7 @@
  * メニューバー関連
  */
 var MENUBAR_JSON = [];
+var TASKBAR_DATA = [];
 
 function MenuBar_RELOAD(){
 	//メニューバーのJSONを取得
@@ -19,4 +20,21 @@ function MenuBar_RELOAD(){
 	MENUBAR_JSON_FILE.forEach(element => {
 		MENUBAR_CONTENTS.innerHTML += element;
 	});
+}
+
+function TASKBAR_RELOAD(){
+	const TASKBAR = document.getElementById("TASKBAR");
+	//タスクバーがあるかどうか
+	if(TASKBAR != null){
+		//あるから続行
+		TASKBAR.innerHTML = "";
+		TASKBAR_DATA.forEach(element => {
+			var HTML = "<BUTTON onclick=\"Window_Active('" + element.ID + "'); Window_Nomalize('" + element.ID + "');\">"+
+						"<IMG src=\"\">"+
+						"<R style=\"text-align: center;\">" + element.NAME + "</R>"+
+						"</BUTTON>";
+
+			TASKBAR.innerHTML += HTML;
+		});
+	}//無いから終了
 }

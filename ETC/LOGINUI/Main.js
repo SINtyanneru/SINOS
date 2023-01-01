@@ -9,6 +9,7 @@ function LOGINUI_Start(){
 	MENUBAR_OC(0);
 	const Window_element = Window_Create("LoginUI",2,0,0,"100%","100%");
 	const WIndowID = Window_element.ID;
+	console.log(WIndowID);
 
 	LOGIN = false;
 

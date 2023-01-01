@@ -2,9 +2,7 @@ var Tile_JSON = [];	//タイルのJSON(ファイルを取得して入れるの�
 const Tile_ID = Array(0,1,2,3,4,5,6,7,8,9,10);//タイルの数分これを置くよ。
 var Clicked_Tile;//クリックしたタイル
 
-function TILE_RELOAD(){
-	//タイルをリロード
-
+function TILE_FLOAD(){
 	//タイルのJSONを取得
 	const TILE_FILEGET = FileTextGet("/CONF/USER/" + SYSTEM_USERID + "/TILE.json");
 	//JSONをJSONぱーす
@@ -12,6 +10,11 @@ function TILE_RELOAD(){
 	//パースした塊を変数にバボーン
 	Tile_JSON = TILE_JSON_FILE;
 
+	TILE_RELOAD();
+}
+
+function TILE_RELOAD(){
+	//タイルをリロード
 
 	//タイルを一回抹殺
 	Tile_ID.forEach(element => {
@@ -22,15 +25,18 @@ function TILE_RELOAD(){
 	var count = 0; //例のアレ、そう、カウント
 
 	//一個一個追加
+	console.log(Tile_JSON);
 	Tile_JSON.forEach(element => {
 		document.getElementById("TILE_" + element.POS).dataset.tileindex = count;	//JSON上で何個目のタイルか
-		document.getElementById("TILE_" + element.POS).innerHTML = "<R class=\"TILE_ITEM_OWNER\" id=\"TILE_ITEM_OWNER\" style=\"position: relative; top: 0px; font-size: 15px;\" onclick=\"if(!event.ctrlKey){Menu_Close(); " + element.VOID + "}\"><CANVAS id=\"TILE_" + element.POS + "_CANVAS\"></CANVAS><R style=\"display:block; position: relative; top: -20px; font-size: 15px;\">" + element.NAME + "</R></R>";
+		document.getElementById("TILE_" + element.POS).innerHTML = "<CANVAS class=\"" + "TILE_" + element.POS + " TILE_ITEM\" id=\"TILE_" + element.POS + "_CANVAS\" onclick=\"if(!event.ctrlKey){Menu_Close(); " + element.VOID + "}\"></CANVAS>";
+		document.getElementById("TILE_" + element.POS + "_CANVAS").dataset.tileindex = count;	//JSON上で何個目のタイルか
 
 		count++;
 	});
 }
 
 function TILE_CONTEXTMENU(e, INDEX){
+	console.log(e.target);
 	CONTEXTMENU_EDIT("今選択してるのは～！ ：" + INDEX + "です！！<HR><BUTTON onclick=\"TILE_CH(" + e.target.dataset.tileindex + ");\" style=\"width: 100%;\">" + "タイルの場所を変更" + "</BUTTON>");		//中に追加
 	CONTEXTMENU_SHOW();
 }
@@ -99,8 +105,8 @@ function TILE_CH(INDEX){
 
 			if(checkFlg){
 				console.log("[ *** ]Tile Changeding...")
+
 				Tile_JSON[INDEX].POS = CH_INDEX;
-				TILE_RELOAD();
 
 				console.log("[ OK ]Tile Changeed!")
 			}else{
@@ -111,6 +117,8 @@ function TILE_CH(INDEX){
 
 			//処理停止
 			clearInterval(set_int);
+
+			TILE_RELOAD();
 			return;
 		}
 	}
@@ -137,12 +145,13 @@ window.addEventListener('click', function(e){
 });
 
 window.addEventListener("contextmenu", function(e){
+	console.log(e.target.className.split(" ")[1]);
 	if(e.target.className.split(" ")[1] == "TILE_ITEM"){
 		console.log("タイルを右クリックした！");
 
 		Clicked_Tile = e.target.className.split(" ")[0];	//Clicked_Tileに、タイルのIDをぶちこーん
 
-		TILE_CONTEXTMENU(e, e.target.className.split(" ")[0].split("_")[1]);
+		TILE_CONTEXTMENU(e, Clicked_Tile.split("_")[1]);
 	}else{
 	}
 });
