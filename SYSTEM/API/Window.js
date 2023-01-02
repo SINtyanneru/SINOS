@@ -41,14 +41,14 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 			case 0:
 				Window_Template =
 				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
-					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" class=\"WINDOW_EXIT_BTN\">X</BUTTON></R></DIV>"+
+					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Close('" + ID + "')\" class=\"WINDOW_EXIT_BTN\">X</BUTTON><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
 			case 1:
 				Window_Template =
 				"<DIV id=\"" + ID + "\" class=\"WINDOW\" style=\"top:" + Number(POS_Y + 80) + "px; left:" + Number(POS_X + 80) + "px; width: " + SIZE_W + "px; height: "+ SIZE_H + "px\">"+
-					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON><BUTTON onclick=\"Window_Close('" + ID + "')\" disabled>X</BUTTON></R></DIV>"+
+					"<DIV class=\"TITLE\">"+ TITLE + "<R class=\"WINDOW_BUTTON\"><BUTTON onclick=\"Window_Close('" + ID + "')\" disabled>X</BUTTON><BUTTON onclick=\"Window_Minimize('" + ID + "')\">_</BUTTON></R></DIV>"+
 					"<DIV class=\"CONTENTS\"></DIV>"+
 				"</DIV>";
 				break;
