@@ -29,9 +29,8 @@ function TASKBAR_RELOAD(){
 		//あるから続行
 		TASKBAR.innerHTML = "";
 		TASKBAR_DATA.forEach(element => {
-			var HTML = "<BUTTON onclick=\"Window_Active('" + element.ID + "'); Window_Nomalize('" + element.ID + "');\">"+
-						"<IMG src=\"\">"+
-						"<R style=\"text-align: center;\">" + element.NAME + "</R>"+
+			var HTML = "<BUTTON onclick=\"Window_Active('" + element.ID + "'); Window_Nomalize('" + element.ID + "');\" title=\"" + element.NAME + "\">"+
+						"<IMG src=\"./ETC/" + element.APP_ID + "/ICON.png\">"+
 						"</BUTTON>";
 
 			TASKBAR.innerHTML += HTML;

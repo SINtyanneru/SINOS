@@ -4,7 +4,7 @@
 
 function JSONVIEWER_Start(Path, FNAME){
 	//ウィンドウを作成
-	const Window_element = Window_Create("JSONビュワー | " + FNAME, 0, 0, 0, 500, 600);
+	const Window_element = Window_Create("JSONVIEWER", "JSONビュワー | " + FNAME, 0, 0, 0, 500, 600);
 	try{
 		var JSON_HTML = "<TEXTAREA style=\"width: 100%; height: calc(100% - 34px);\">";
 		

@@ -4,7 +4,7 @@
 
 function TEXTEDITOR_Start(PATH,FILENAME){
 	//ウィンドウを作成
-	const Window_element = Window_Create("テキストエディター | " + FILENAME, 0, 0, 0, 400, 500);
+	const Window_element = Window_Create("TEXTEDITOR", "テキストエディター | " + FILENAME, 0, 0, 0, 400, 500);
 	if(PATH == "NONE"){
 		//ファイルのパス指定が特にない場合
 	}else{

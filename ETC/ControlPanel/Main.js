@@ -6,7 +6,7 @@ function controlPanel_Start(){
 	var subx = ( screen.availWidth - 600 ) / 2;
 	var suby = ( screen.availHeight - 500 ) / 2;
 
-	const Window_element = Window_Create("設定", 0, subx, suby, 700, 500);
+	const Window_element = Window_Create("ControlPanel", "設定", 0, subx, suby, 700, 500);
 	const WIndowID = Window_element.ID;
 
 	controlPanel_HOME(WIndowID);

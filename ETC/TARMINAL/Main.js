@@ -6,7 +6,7 @@
 var TARMINAL_Version = "1.0";
 function TARMINAL_Start(){
 	//ウィンドウを作成
-	const Window_element = Window_Create("ターミナルちゃん " + TARMINAL_Version, 0, 0, 0, 500, 500);
+	const Window_element = Window_Create("TARMINAL", "ターミナルちゃん " + TARMINAL_Version, 0, 0, 0, 500, 500);
 	//上のやつを描画
 	Window_Contents("<TEXTAREA readonly id=\"TARMINAL_TEXTAREA_" + Window_element.ID + "\" style=\"width: 100%; height: calc(100% - 55px); resize: none;\">SINOS Term" + TARMINAL_Version + "\n</TEXTAREA><INPUT class=\"\" id=\"TERMINAL_INPUT_" + Window_element.ID + "\" style=\"width: 100%;\" onkeydown=\"TARMINAL_TEXTINPUT(event, '" + Window_element.ID + "')\">",0,Window_element.ID);
 	document.getElementById("TARMINAL_TEXTAREA_" + Window_element.ID).value += "\nSINOS>"

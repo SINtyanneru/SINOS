@@ -7,7 +7,7 @@
 
 function FILEMANAGER_start(){
 	//ウィンドウを作成
-	const Window_element = Window_Create("ファイルマネージャー", 0, 0, 0, 500, 500);
+	const Window_element = Window_Create("FILEMANAGER", "ファイルマネージャー", 0, 0, 0, 500, 500);
 	//ウィンドウの中身をリロード
 	FILEMANAGER_FILELIST_RELOAD(Window_element.ID,"/HOME/" + SYSTEM_USERID);
 }

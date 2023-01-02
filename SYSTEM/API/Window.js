@@ -31,7 +31,7 @@ function Window_Active(element){
  * @param {"Position Y"} POS_Y 
  * @returns 
  */
-function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
+function Window_Create(APP_ID, TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 	try{
 		var ID = Math.floor( Math.random() * 100 );
 
@@ -78,7 +78,7 @@ function Window_Create(TITLE,MODE,POS_X,POS_Y,SIZE_W,SIZE_H){
 			drag.init(div, title);
 		});
 
-		TASKBAR_DATA.push({"ID":ID, "NAME":TITLE});
+		TASKBAR_DATA.push({"ID":ID, "NAME":TITLE, "APP_ID":APP_ID});
 		TASKBAR_RELOAD();
 
 		Window_Active(ID)

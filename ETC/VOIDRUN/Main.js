@@ -6,7 +6,7 @@ function VOIDRUN_Start(){
 	var subx = 10;
 	var suby = ( screen.availHeight - 330 );
 
-	const Window_element = Window_Create("関数を指定して実行", 0, subx, suby, 500, 200);
+	const Window_element = Window_Create("VOIDRUN","関数を指定して実行", 0, subx, suby, 500, 200);
 	const WIndowID = Window_element.ID;
 
 	const UIHTML = ""+

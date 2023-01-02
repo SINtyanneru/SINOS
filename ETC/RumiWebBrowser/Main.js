@@ -3,7 +3,7 @@
  */
 
 function RWB_Start(){
-	const Window_element = Window_Create("るみうぇぶぶらうざー",0,0,0,"500","500");
+	const Window_element = Window_Create("RumiWebBrowser", "るみうぇぶぶらうざー",0,0,0,"500","500");
 	const WIndowID = Window_element.ID;
 
 

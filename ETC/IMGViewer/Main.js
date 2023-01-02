@@ -1,5 +1,5 @@
 function IMGViewer_Start(BLOB_URL,FILENAME){
-	const Window_element = Window_Create("画像見るわー(?) | " + FILENAME, 0, 0, 0, 500, 500);
+	const Window_element = Window_Create("IMGViewer", "画像見るわー(?) | " + FILENAME, 0, 0, 0, 500, 500);
 	Window_Contents("<BUTTON onclick=\"IMGViewer_Rotate('" + Window_element.ID + "', 90)\">90</BUTTON><BUTTON onclick=\"IMGViewer_Rotate('" + Window_element.ID + "', -90)\">-90</BUTTON>"+
 					"<HR><DIV style=\"overflow: scroll; width: 100%; height: 100%;\"><IMG id='IMGVIEWER_" + Window_element.ID + "' src=\"" + BLOB_URL + "\" \"></DIV>", 0, Window_element.ID);
 }
