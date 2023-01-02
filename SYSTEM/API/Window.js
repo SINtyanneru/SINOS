@@ -26,7 +26,7 @@ function Window_Active(element){
 
 /**
  * 
- * @param {"Title"} TITLE 
+ * @param {"Title"} TITLE
  * @param {"Posiion X"} POS_X 
  * @param {"Position Y"} POS_Y 
  * @returns 

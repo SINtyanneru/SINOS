@@ -18,6 +18,10 @@ function OpenFileDialog(){
 	return chrome.webview.hostObjects.sync.class.OpenFileDialog();
 }
 
+function SaveFileDialog(){
+	return chrome.webview.hostObjects.sync.class.SaveFileDialog();
+}
+
 function SaveFile(Path, DATA){
 	return chrome.webview.hostObjects.sync.class.SaveFile(Path, DATA);
 }
