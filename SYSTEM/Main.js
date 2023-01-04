@@ -76,7 +76,7 @@ function WALLPAPER(){
 			//通常だと、ログアウト時にも2000ms待ってしまうので、ここでログアウトされたかをチェック
 			if(LOGINUI_LOGOUT_ == false){
 				//現時点では、ここで読み込み終了なのでここで止める
-				setTimeout(function(){BOOT_CL();},8000);
+				setTimeout(function(){BOOT_CL();},1000);
 			}
 		}
 	}catch(e){
@@ -172,7 +172,7 @@ window.addEventListener('contextmenu', function(e){
 		//デスクトップのコンテキストメニュー
 		CONTEXTMENU_EDIT("デスクトップ");
 		CONTEXTMENU_SHOW();
-	}else if(e.target.id == "MENUBAR"){
+	}else if(e.target.id == "MENUBAR" || e.target.id == "TASKBAR"){
 		//メニューバーのコンテキストメニュー
 		CONTEXTMENU_EDIT("メニューバー");
 		CONTEXTMENU_SHOW();

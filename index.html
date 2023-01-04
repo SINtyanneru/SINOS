@@ -44,6 +44,8 @@
 			<SCRIPT>BOOT_LOG("[ OK ]Load File:MenuBar.js");</SCRIPT>
 		<SCRIPT src="./SYSTEM/DashBord.js"></SCRIPT>
 			<SCRIPT>BOOT_LOG("[ OK ]Load File:DashBord.js");</SCRIPT>
+		<SCRIPT src="./SYSTEM/Desktop.js"></SCRIPT>
+			<SCRIPT>BOOT_LOG("[ OK ]Load File:Desktop.js");</SCRIPT>
 
 		<!--アプリ-->
 		<SCRIPT src="./ETC/LOGINUI/Main.js"></SCRIPT>
@@ -66,6 +68,7 @@
 			<DIV class="MENUBAR_CLOCK" id="MENUBAR_CLOCK" onclick="DashBord_OC()"></DIV> <!--時計-->
 		</DIV>
 		<DIV class="DESKTOP" id="DESKTOP">
+			<CANVAS style="width: 100%; height: 100%;" class="DESKTOP_CANVAS" id="DESKTOP_CANVAS"></CANVAS>
 
 			<!--ウィンドウエリア-->
 			<DIV class="WINDOW_AREA" id="WINDOW_AREA">
